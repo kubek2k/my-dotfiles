@@ -1,0 +1,7 @@
+[user]
+	name = Jakub Janczak
+	email = jakub.janczak@schibsted.pl
+[color]
+	ui = auto
+[alias]
+	lol = log --format=oneline --abbrev-commit --decorate --graph --all
