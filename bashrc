@@ -22,6 +22,4 @@ export LS_COLORS="no=00:fi=00:di=36;40:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-[[ -s /usr/local/Cellar/autojump/20/etc/autojump.bash ]] && source /usr/local/Cellar/autojump/20/etc/autojump.bash
-
 alias sync_widget='while [ true ]; do find . -name '*.jsp' -mtime -2s -print -exec cp {} /opt/aos/publication/ROOT/{} \; ; sleep 1; done'
