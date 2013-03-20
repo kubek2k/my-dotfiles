@@ -23,3 +23,5 @@ export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxexexabagacad
 
 alias sync_widget='while [ true ]; do find . -name '*.jsp' -mtime -2s -print -exec cp {} /opt/aos/publication/ROOT/{} \; ; sleep 1; done'
+
+[[ -s `brew --prefix`/etc/autojump.bash ]] && source `brew --prefix`/etc/autojump.bash
