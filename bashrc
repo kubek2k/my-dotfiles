@@ -23,5 +23,7 @@ export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxexexabagacad
 
 alias sync_widget='while [ true ]; do find . -name '*.jsp' -mtime -2s -print -exec cp {} /opt/aos/publication/ROOT/{} \; ; sleep 1; done'
+alias mci='mvn clean install'
+alias mcp='mvn clean package'
 
 [[ -s `brew --prefix`/etc/autojump.bash ]] && source `brew --prefix`/etc/autojump.bash
