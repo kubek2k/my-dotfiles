@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin
+export PATH=/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python/
 
 BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
@@ -77,3 +77,4 @@ function mcp {
 # git completion
 [[ -s /usr/share/git-core/git-completion.bash ]] && source /usr/share/git-core/git-completion.bash
 
+[[ -s $HOME/Dotfiles/completions/fab/fab ]] && source $HOME/Dotfiles/completions/fab/fab
