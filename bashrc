@@ -77,4 +77,9 @@ function mcp {
 # git completion
 [[ -s /usr/share/git-core/git-completion.bash ]] && source /usr/share/git-core/git-completion.bash
 
+# brew completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 [[ -s $HOME/Dotfiles/completions/fab/fab ]] && source $HOME/Dotfiles/completions/fab/fab
