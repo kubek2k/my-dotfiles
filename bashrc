@@ -82,4 +82,4 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-[[ -s $HOME/Dotfiles/completions/fab/fab ]] && source $HOME/Dotfiles/completions/fab/fab
+[[ -s $HOME/Dotfiles/bash.completion.d ]] && source $HOME/Dotfiles/bash.completion.d/*
