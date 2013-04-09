@@ -5,3 +5,5 @@
 	ui = auto
 [alias]
 	lol = log --format=oneline --abbrev-commit --decorate --graph --all
+[push]
+	default = simple
