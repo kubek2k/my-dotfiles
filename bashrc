@@ -25,6 +25,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 # prompt definition
 export PS1='\! \[${WHITE}\](\[${YELLOW}\]\u@\h\[${WHITE}\]) \[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
+# export PS1='\! \[${WHITE}\](\[${YELLOW}\]\u@\h\[${WHITE}\]) \[${RED}\]\W\[${MAGENTA}\]\[${GREEN}\]\$\[${NORMAL}\] '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -64,11 +65,11 @@ function send_notification {
 }
 
 function mci {
-    mvn clean package $* && send_notification "`pwd` clean package $* done"
+    mvn clean install $* && send_notification "`pwd` clean install $* done"
 }
 
 function mcp {
-    mvn clean install $* && send_notification "`pwd` clean install $* done"
+    mvn clean package $* && send_notification "`pwd` clean package $* done"
 }
 
 # autojump
@@ -83,3 +84,5 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 [[ -s $HOME/Dotfiles/bash.completion.d ]] && source $HOME/Dotfiles/bash.completion.d/*
+
+[[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local

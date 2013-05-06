@@ -27,6 +27,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType ruby set omnifunc=rubycomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
+au BufRead,BufNewFile *.go set filetype=go 
+
 " line numbers config
 set nu
 set numberwidth=3
