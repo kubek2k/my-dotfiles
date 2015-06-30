@@ -1,4 +1,8 @@
-export PATH=/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python/
+export PATH=/usr/local/go/bin:/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python/
+export PATH=/usr/local/share/npm/bin:$PATH
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home"
+export JAVA_HOME_7=$JAVA_HOME
 
 BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
@@ -17,7 +21,7 @@ REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
 # git branch name in PS1
-[[ -s /usr/share/git-core/git-prompt.sh ]] && source /usr/share/git-core/git-prompt.sh
+[[ -s /usr/local/git/contrib/completion/git-prompt.sh ]] && source /usr/local/git/contrib/completion/git-prompt.sh
 
 # show untracked files as %
 export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -72,11 +76,16 @@ function mcp {
     mvn clean package $* && send_notification "`pwd` clean package $* done"
 }
 
+function o {
+    COMMAND=$*
+    $COMMAND && send_notification "'$COMMAND' done" || send_notification "'$COMMAND' not successful'"
+}
+
 # autojump
-[[ -s `brew --prefix`/etc/autojump.bash ]] && source `brew --prefix`/etc/autojump.bash
+[[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
 
 # git completion
-[[ -s /usr/share/git-core/git-completion.bash ]] && source /usr/share/git-core/git-completion.bash
+[[ -s /usr/local/git/contrib/completion/git-completion.bash ]] && source /usr/local/git/contrib/completion/git-completion.bash
 
 # brew completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -86,3 +95,8 @@ fi
 [[ -s $HOME/Dotfiles/bash.completion.d ]] && source $HOME/Dotfiles/bash.completion.d/*
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
+[[ "$(which hub)" ]] && eval "$(hub alias -s)"
+
+# added by travis gem
+[ -f /Users/kubek2k/.travis/travis.sh ] && source /Users/kubek2k/.travis/travis.sh
