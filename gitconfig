@@ -6,4 +6,7 @@
 [alias]
 	lol = log --format=oneline --abbrev-commit --decorate --graph --all
 [push]
-	default = simple
+# Push current branch even if you've never pushed it before
+    default = current
+[hub]
+	host = github.schibsted.io
