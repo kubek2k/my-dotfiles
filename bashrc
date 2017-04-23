@@ -1,5 +1,5 @@
 export PATH=/usr/local/go/bin:/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python/
-export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=${HOME}/.local/bin:/usr/local/share/npm/bin:/Users/kubek2k/.cache/rebar3/bin:$PATH
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home"
 export JAVA_HOME_7=$JAVA_HOME
@@ -62,7 +62,6 @@ export LS_COLORS="no=00:fi=00:di=36;40:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-alias sync_widget='while [ true ]; do find . -name '*.jsp' -mtime -2s -print -exec cp {} /opt/aos/publication/ROOT/{} \; ; sleep 1; done'
 function send_notification {
     MESSAGE=$1
     terminal-notifier -message "$MESSAGE" -title "Bash notification"
@@ -81,6 +80,37 @@ function o {
     $COMMAND && send_notification "'$COMMAND' done" || send_notification "'$COMMAND' not successful'"
 }
 
+function connect_to_heroku_psql {
+    URL=`heroku config:get -s DATABASE_URL | sed -e 's/DATABASE_URL=//'`
+    psql "$URL"
+}
+
+function encodeURIComponent() {
+    awk 'BEGIN {while (y++ < 125) z[sprintf("%c", y)] = y
+    while (y = substr(ARGV[1], ++j, 1))
+        q = y ~ /[[:alnum:]_.!~*\47()-]/ ? q y : q sprintf("%%%02X", z[y])
+        print q}' "$1"
+}
+
+function set_slack_status {
+    if [ -z "${SLACK_TOKEN}" ]; then
+        echo "Can't set the status because no slack token is provided" >&2
+        return 
+    fi
+    profile=`encodeURIComponent "{\"status_text\": \"$1\", \"status_emoji\": \"$2\"}"`
+    curl -X POST "https://slack.com/api/users.profile.set?token=${SLACK_TOKEN}&profile=${profile}"
+}
+
+function send_to_slack {
+    if [ -z "${SLACK_TOKEN}" ]; then
+        echo "Can't set the status because no slack token is provided" >&2
+        return 
+    fi
+    channel=$1
+    text=`encodeURIComponent "$2"`
+    curl -X POST "https://slack.com/api/chat.postMessage?token=${SLACK_TOKEN}&text=${text}&channel=${channel}&as_user=true"
+}
+
 # autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
 
@@ -96,7 +126,8 @@ fi
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
-[[ "$(which hub)" ]] && eval "$(hub alias -s)"
-
 # added by travis gem
 [ -f /Users/kubek2k/.travis/travis.sh ] && source /Users/kubek2k/.travis/travis.sh
+
+export NVM_DIR="/Users/kubek2k/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
