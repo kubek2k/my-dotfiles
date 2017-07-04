@@ -54,3 +54,5 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+set softtabstop=4 shiftwidth=4 expandtab
