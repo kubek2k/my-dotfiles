@@ -12,3 +12,5 @@
     default = current
 [hub]
 	host = github.schibsted.io
+[core]
+	excludesfile = ~/.gitignore
