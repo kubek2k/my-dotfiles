@@ -5,8 +5,8 @@ set hlsearch ignorecase incsearch
 set smartcase
 " show matching brackets
 set showmatch
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smarttab
 set expandtab
 
@@ -56,3 +56,5 @@ set t_vb=
 set tm=500
 
 set softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType go setlocal noexpandtab shiftwidth=7 tabstop=7 softtabstop=7 nolist
+
