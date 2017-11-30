@@ -20,16 +20,13 @@ BLINK=$(tput blink)
 REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
-# git branch name in PS1
-[[ -s /usr/local/git/contrib/completion/git-prompt.sh ]] && source /usr/local/git/contrib/completion/git-prompt.sh
-
 # show untracked files as %
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 # show dirty state as * and added files as +
 export GIT_PS1_SHOWDIRTYSTATE=1
 # prompt definition
-export PS1='\! \[${WHITE}\](\[${YELLOW}\]\u@\h\[${WHITE}\]) \[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
-# export PS1='\! \[${WHITE}\](\[${YELLOW}\]\u@\h\[${WHITE}\]) \[${RED}\]\W\[${MAGENTA}\]\[${GREEN}\]\$\[${NORMAL}\] '
+#export PS1='\! \[${WHITE}\](\[${YELLOW}\]\u@\h\[${WHITE}\]) \[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
+export PS1='\! ${WHITE}(${YELLOW}\u@\h${WHITE}) ${RED}\W${MAGENTA}${GREEN} \$${NORMAL} '
 
 export LS_COLORS="no=00:fi=00:di=36;40:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
 export CLICOLOR=1
@@ -84,13 +81,26 @@ function send_to_slack {
     curl -X POST "https://slack.com/api/chat.postMessage?token=${SLACK_TOKEN}&text=${text}&channel=${channel}&as_user=true"
 }
 
+function ocpr {
+   if [ "$1" == "" ]; then
+       echo "No message provided" > /dev/stderr
+       return 1
+   fi
+   BRANCH_NAME=`echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^A-Za-z]/-/g'`
+   git checkout -b "$BRANCH_NAME"
+   git add .
+   git commit -m "$1"
+   git push
+   hub pull-request
+}
+
 # autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-        PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;${USER}@${HOSTNAME}: ${PWD}\007\""
+        # PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;${USER}@${HOSTNAME}: ${PWD}\007\""
 
         # Show the currently running command in the terminal title:
         # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
