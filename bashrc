@@ -142,8 +142,6 @@ if [ -d "$HOME/.nix-profile/etc/bash_completion.d" ]; then
     done
 fi
 
-[[ -s $HOME/Dotfiles/bash.completion.d ]] && source $HOME/Dotfiles/bash.completion.d/*
-
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
 # added by travis gem
