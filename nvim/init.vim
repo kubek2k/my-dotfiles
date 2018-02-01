@@ -1,4 +1,5 @@
-syntax on
+" Leader key
+let mapleader = ','
 
 call plug#begin()
 Plug 'neomake/neomake'
