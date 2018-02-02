@@ -59,3 +59,10 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Fugitive key bindings
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>ga :Gwrite<cr>
+nmap <leader>gl :Glog<cr>
+nmap <leader>gd :Gdiff<cr>
