@@ -1,6 +1,25 @@
 " Leader key
 let mapleader = ','
 
+" defaults
+set nocompatible
+syntax on
+set nowrap
+set encoding=utf8
+set ruler
+set hlsearch
+set incsearch
+
+" Set Proper Tabs
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 call plug#begin()
 Plug 'neomake/neomake'
 Plug 'parsonsmatt/intero-neovim'
