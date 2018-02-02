@@ -9,6 +9,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 call neomake#configure#automake('w')
