@@ -59,6 +59,9 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <Tab>
+\ pumvisible() ? "\<C-n>" :
+\ deoplete#mappings#manual_complete()
 
 " Fugitive key bindings
 nmap <leader>gs :Gstatus<cr>
