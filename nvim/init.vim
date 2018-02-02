@@ -14,6 +14,8 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'lifepillar/vim-solarized8'
 
+Plug 'mileszs/ack.vim'
+
 call plug#end()
 
 call neomake#configure#automake('w')
@@ -83,3 +85,8 @@ try
 colorscheme solarized8
 catch
 endtry
+
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
