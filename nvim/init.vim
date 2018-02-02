@@ -6,6 +6,9 @@ Plug 'neomake/neomake'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 call neomake#configure#automake('w')
@@ -54,5 +57,3 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-
-let mapleader = ','
