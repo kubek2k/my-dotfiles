@@ -3,6 +3,7 @@ let mapleader = ','
 
 " defaults
 set nocompatible
+filetype plugin indent on
 syntax on
 set nowrap
 set encoding=utf8
@@ -41,8 +42,6 @@ Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
 call plug#end()
-
-call neomake#configure#automake('w')
 
 augroup interoMaps
   au!
@@ -87,7 +86,6 @@ au FileType haskell let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
 inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
 \ deoplete#mappings#manual_complete()
@@ -95,6 +93,10 @@ inoremap <silent><expr> <Tab>
 inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
 \ deoplete#mappings#manual_complete()
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+let g:deoplete#enable_at_startup = 1
+call deoplete#initialize()
 
 " Fugitive key bindings
 nmap <leader>gs :Gstatus<cr>
@@ -149,3 +151,22 @@ vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
+
+" Terminal mode escape
+:tnoremap <Esc> <C-\><C-n>
+
+" Mappings to Alt based navigation
+:tnoremap <A-h> <C-\><C-N><C-w>h
+:tnoremap <A-j> <C-\><C-N><C-w>j
+:tnoremap <A-k> <C-\><C-N><C-w>k
+:tnoremap <A-l> <C-\><C-N><C-w>l
+
+:inoremap <A-h> <C-\><C-N><C-w>h
+:inoremap <A-j> <C-\><C-N><C-w>j
+:inoremap <A-k> <C-\><C-N><C-w>k
+:inoremap <A-l> <C-\><C-N><C-w>l
+
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
