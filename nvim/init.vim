@@ -11,6 +11,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'vim-airline/vim-airline'
+
+Plug 'lifepillar/vim-solarized8'
+
 call plug#end()
 
 call neomake#configure#automake('w')
@@ -63,9 +66,20 @@ inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
 \ deoplete#mappings#manual_complete()
 
+inoremap <silent><expr> <S-Tab>
+\ pumvisible() ? "\<C-p>" :
+\ deoplete#mappings#manual_complete()
+
 " Fugitive key bindings
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>ga :Gwrite<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gd :Gdiff<cr>
+
+" Colorscheme
+set background=dark
+try
+colorscheme solarized8
+catch
+endtry
