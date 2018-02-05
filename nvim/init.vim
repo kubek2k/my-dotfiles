@@ -92,7 +92,7 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Deoplete
 inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
-\ deoplete#mappings#manual_complete()
+\ "\<Tab>"
 
 inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
