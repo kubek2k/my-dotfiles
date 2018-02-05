@@ -18,6 +18,10 @@ set smarttab
 set expandtab
 set mouse=a
 
+" More natural splits
+set splitbelow
+set splitright
+
 if (has("termguicolors"))
   set termguicolors
 endif
