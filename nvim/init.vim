@@ -38,6 +38,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 
 Plug 'lifepillar/vim-solarized8'
+Plug 'nanotech/jellybeans.vim'
 
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -112,7 +113,7 @@ nmap <leader>gd :Gdiff<cr>
 " Colorscheme
 set background=dark
 try
-colorscheme solarized8
+colorscheme jellybeans
 catch
 endtry
 
