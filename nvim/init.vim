@@ -197,5 +197,6 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'json': ['jq']
 \}
 let g:ale_javascript_eslint_use_global = 0
