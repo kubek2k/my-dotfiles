@@ -85,6 +85,7 @@ augroup interoMaps
   " Managing targets
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
+  let g:intero_ghci_options='-Wall'
 augroup END
 
 " Disable haskell-vim omnifunc
