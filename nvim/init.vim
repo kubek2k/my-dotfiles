@@ -27,6 +27,7 @@ if (has("termguicolors"))
 endif
 
 call plug#begin()
+Plug 'neomake/neomake', { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -45,7 +46,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'for': 'javascript' }
 call plug#end()
 
 augroup interoMaps
@@ -199,4 +200,6 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['jq']
 \}
-let g:ale_javascript_eslint_use_global = 0
+
+let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
+source $HOME/.config/nvim/js.vim
