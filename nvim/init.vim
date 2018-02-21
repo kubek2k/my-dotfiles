@@ -47,6 +47,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 
 Plug 'w0rp/ale', { 'for': 'javascript' }
+Plug 'moll/vim-node'
 call plug#end()
 
 augroup interoMaps
