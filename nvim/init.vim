@@ -48,6 +48,7 @@ Plug 'juliosueiras/vim-terraform-completion'
 
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'moll/vim-node'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 augroup interoMaps
@@ -205,3 +206,5 @@ let g:ale_fixers = {
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
+
+let g:rainbow_active = 1
