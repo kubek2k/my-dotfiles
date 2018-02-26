@@ -203,6 +203,8 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+let g:rainbow_active = 1
+
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
@@ -213,7 +215,6 @@ let g:ale_fixers = {
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
 
-let g:rainbow_active = 1
 
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#enable_smart_case = 1
