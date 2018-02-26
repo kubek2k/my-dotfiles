@@ -46,6 +46,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 
+Plug 'scrooloose/nerdcommenter'
+
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'moll/vim-node'
 Plug 'luochen1990/rainbow'
