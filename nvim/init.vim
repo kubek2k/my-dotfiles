@@ -49,7 +49,11 @@ Plug 'juliosueiras/vim-terraform-completion'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'w0rp/ale', { 'for': 'javascript' }
+
 Plug 'moll/vim-node'
+Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
 Plug 'luochen1990/rainbow'
 call plug#end()
 
@@ -210,3 +214,9 @@ let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
 
 let g:rainbow_active = 1
+
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#enable_smart_case = 1
+au FileType javascript,jsx setl omnifunc=tern#Complete
+let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
+
