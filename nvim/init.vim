@@ -214,9 +214,3 @@ let g:ale_fixers = {
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
-
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#enable_smart_case = 1
-au FileType javascript,jsx setl omnifunc=tern#Complete
-let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
-
