@@ -1,6 +1,7 @@
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim'
 Plug 'moll/vim-node'
+Plug 'pangloss/vim-javascript'
 
 let g:ale_javascript_eslint_use_global = 0
 

@@ -15,7 +15,7 @@ set incsearch
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set expandtab
+set expandtab 
 set mouse=a
 
 " More natural splits
@@ -115,10 +115,7 @@ nmap <leader>gd :Gdiff<cr>
 
 " Colorscheme
 set background=dark
-try
-colorscheme jellybeans
-catch
-endtry
+autocmd VimEnter * colorscheme jellybeans
 
 " Ack
 if executable('ag')
