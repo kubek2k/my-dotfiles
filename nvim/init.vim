@@ -98,13 +98,12 @@ inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
 \ "\<Tab>"
 
-inoremap <silent><expr> <S-Tab>
+autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
 \ deoplete#mappings#manual_complete()
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-let g:deoplete#enable_at_startup = 1
-autocmd VimEnter * call deoplete#initialize()
+autocmd VimEnter * let g:deoplete#omni_patterns = {}
+autocmd VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+autocmd VimEnter * let g:deoplete#enable_at_startup = 1
 
 " Fugitive key bindings
 nmap <leader>gs :Gstatus<cr>
@@ -190,3 +189,5 @@ let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
 
 call plug#end()
+
+call deoplete#initialize()

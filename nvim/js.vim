@@ -78,5 +78,5 @@ au FileType javascript command! -nargs=* NodeRun call s:run()
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#enable_smart_case = 1
 au FileType javascript,jsx setl omnifunc=tern#Complete
-let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
+autocmd VimEnter * let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
 
