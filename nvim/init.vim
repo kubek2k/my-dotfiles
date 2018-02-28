@@ -36,6 +36,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vimlab/split-term.vim'
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'nanotech/jellybeans.vim'
@@ -45,19 +46,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' 
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
-
-Plug 'vimlab/split-term.vim'
-
 Plug 'scrooloose/nerdcommenter'
-
 Plug 'w0rp/ale', { 'for': 'javascript' }
-
-Plug 'moll/vim-node'
-Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
 Plug 'luochen1990/rainbow'
-call plug#end()
 
 augroup interoMaps
   au!
@@ -113,7 +104,7 @@ inoremap <silent><expr> <S-Tab>
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
-call deoplete#initialize()
+autocmd VimEnter * call deoplete#initialize()
 
 " Fugitive key bindings
 nmap <leader>gs :Gstatus<cr>
@@ -200,3 +191,5 @@ let g:ale_fixers = {
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
+
+call plug#end()
