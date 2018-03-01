@@ -44,9 +44,12 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' 
+
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'luochen1990/rainbow'
 
