@@ -10,6 +10,8 @@ set encoding=utf8
 set ruler
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 " Set Proper Tabs
 set tabstop=4
