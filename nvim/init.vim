@@ -29,6 +29,12 @@ if (has("termguicolors"))
 endif
 
 call plug#begin()
+Plug 'lifepillar/vim-solarized8'
+Plug 'nanotech/jellybeans.vim'
+" Colorscheme
+autocmd VimEnter * set background=dark
+autocmd VimEnter * colorscheme jellybeans
+
 Plug 'neomake/neomake', { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
@@ -36,12 +42,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+autocmd VimEnter * highlight clear SignColumn | highlight GitGutterAdd guifg=green | highlight GitGutterChange guifg=yellow | highlight GitGutterDelete guifg=red | highlight GitGutterChangeDelete guifg=yellow
+set updatetime=500
 
 Plug 'vim-airline/vim-airline'
 Plug 'vimlab/split-term.vim'
-
-Plug 'lifepillar/vim-solarized8'
-Plug 'nanotech/jellybeans.vim'
 
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -117,10 +122,6 @@ nmap <leader>gc :Gcommit<cr>
 nmap <leader>ga :Gwrite<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gd :Gdiff<cr>
-
-" Colorscheme
-set background=dark
-autocmd VimEnter * colorscheme jellybeans
 
 " Ack
 if executable('ag')
