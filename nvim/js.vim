@@ -1,5 +1,5 @@
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
 
@@ -19,6 +19,7 @@ let s:script .= '];'
 let s:script .= 'console.log(Object.keys(process.binding("natives")).filter(function (el) {'
 let s:script .= '	return !/^_|^internal|\//.test(el) && blacklist.indexOf(el) === -1;'
 let s:script .= '}).sort().join(" "));'
+
 function s:require(command)
   let args = split(a:command)
 

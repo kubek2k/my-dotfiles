@@ -8,6 +8,7 @@ syntax on
 set nowrap
 set encoding=utf8
 set ruler
+
 set hlsearch
 set incsearch
 set ignorecase
@@ -105,13 +106,13 @@ au FileType haskell let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
-inoremap <silent><expr> <Tab>
+autocmd VimEnter * inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
 \ "\<Tab>"
-
 autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
 \ deoplete#mappings#manual_complete()
+
 autocmd VimEnter * let g:deoplete#omni_patterns = {}
 autocmd VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 autocmd VimEnter * let g:deoplete#enable_at_startup = 1
@@ -196,7 +197,7 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " Terminal mode escape
-:tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 au FileType fzf tnoremap <Esc> <Esc>
 
 let g:rainbow_active = 1
