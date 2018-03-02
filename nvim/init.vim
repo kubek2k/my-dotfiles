@@ -49,6 +49,7 @@ set updatetime=500
 
 Plug 'vim-airline/vim-airline'
 Plug 'vimlab/split-term.vim'
+Plug 'wesQ3/vim-windowswap'
 
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
