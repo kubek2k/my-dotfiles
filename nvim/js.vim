@@ -23,9 +23,10 @@ function s:require(command)
   let args = split(a:command)
 
   if len(s:modules) == 0
-    let s:modules = split(system("node -pe '" . s:script . "'"), ' ') endif
+    let s:modules = split(system("node -pe '" . s:script . "'"), ' ') 
+  endif
 
-  let reqlist = map(copy(args), '"var " . v:val . " = require(''" . v:val . "'');"')
+  let reqlist = map(copy(args), '"const " . v:val . " = require(''" . v:val . "'');"')
 
   let toinstall = filter(args, 's:filterModule(v:val, s:modules)')
 
