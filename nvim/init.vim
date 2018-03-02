@@ -20,6 +20,7 @@ set shiftwidth=4
 set smarttab
 set expandtab 
 set mouse=a
+set updatetime=500
 
 " More natural splits
 set splitbelow
