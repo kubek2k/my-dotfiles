@@ -48,6 +48,10 @@ autocmd VimEnter * highlight clear SignColumn | highlight GitGutterAdd guifg=gre
 set updatetime=500
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+autocmd VimEnter * AirlineTheme jellybeans
+let g:airline_powerline_fonts = 1
+
 Plug 'vimlab/split-term.vim'
 Plug 'wesQ3/vim-windowswap'
 
