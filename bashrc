@@ -32,6 +32,7 @@ export LS_COLORS="no=00:fi=00:di=36;40:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxexexabagacad
 
+export EDITOR=nvim
 alias v=nvim
 
 function send_notification {
