@@ -152,3 +152,5 @@ export NVM_DIR="/Users/kubek2k/.nvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+[ -f ~/Dotfiles/bash/fzf ] && source ~/Dotfiles/bash/fzf
