@@ -53,6 +53,8 @@ autocmd VimEnter * AirlineTheme jellybeans
 let g:airline_powerline_fonts = 1
 
 Plug 'vimlab/split-term.vim'
+autocmd VimEnter * let g:disable_key_mappings = 1
+
 Plug 'wesQ3/vim-windowswap'
 
 Plug 'mileszs/ack.vim'
@@ -192,26 +194,6 @@ function! SearchVisualSelectionWithAg() range
     execute 'Ag' selection
 endfunction
 
-" Mappings to Alt based navigation
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-" Terminal mode escape
-tnoremap <Esc> <C-\><C-n>
-au FileType fzf tnoremap <Esc> <Esc>
-
 let g:rainbow_active = 1
 
 let g:ale_fix_on_save = 1
@@ -227,3 +209,36 @@ source $HOME/.config/nvim/js.vim
 call plug#end()
 
 call deoplete#initialize()
+
+command TTerm tabe +terminal
+
+" Allow hitting <Esc> to switch to normal mode
+tnoremap <buffer> <Esc> <C-\><C-n>
+
+" Alt+[hjkl] to navigate through windows in insert mode
+tnoremap <buffer> <A-h> <C-\><C-n><C-w>h
+tnoremap <buffer> <A-j> <C-\><C-n><C-w>j
+tnoremap <buffer> <A-k> <C-\><C-n><C-w>k
+tnoremap <buffer> <A-l> <C-\><C-n><C-w>l
+
+" Alt+[hjkl] to navigate through windows in normal mode
+nnoremap <buffer> <A-h> <C-w>h
+nnoremap <buffer> <A-j> <C-w>j
+nnoremap <buffer> <A-k> <C-w>k
+nnoremap <buffer> <A-l> <C-w>l
+
+" Ctrl+Arrows to navigate through windows in insert mode
+tnoremap <buffer> <C-Left>  <C-\><C-n><C-w>h
+tnoremap <buffer> <C-Down>  <C-\><C-n><C-w>j
+tnoremap <buffer> <C-Up>    <C-\><C-n><C-w>k
+tnoremap <buffer> <C-Right> <C-\><C-n><C-w>l
+
+" Ctrl+Arrows to navigate through windows in normal mode
+nnoremap <buffer> <C-Left>  <C-w>h
+nnoremap <buffer> <C-Down>  <C-w>j
+nnoremap <buffer> <C-Up>    <C-w>k
+nnoremap <buffer> <C-Right> <C-w>l
+
+" FZF mapping
+au FileType fzf tnoremap <Esc> <Esc>
+
