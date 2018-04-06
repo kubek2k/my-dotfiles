@@ -173,7 +173,7 @@ nnoremap <silent> <leader>. :AgIn
 nnoremap <silent> K :call SearchWordWithAg()<CR>
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
-nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>gb :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
 
 function! SearchWordWithAg()
