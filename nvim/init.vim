@@ -212,32 +212,37 @@ call deoplete#initialize()
 
 command TTerm tabe +terminal
 
+nnoremap <leader>tt :TTerm<cr>
+nnoremap <leader>tv :VTerm<cr>
+nnoremap <leader>te :Term<cr>
+
 " Allow hitting <Esc> to switch to normal mode
-tnoremap <buffer> <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
+inoremap <Esc> <C-\><C-n>
 
 " Alt+[hjkl] to navigate through windows in insert mode
-tnoremap <buffer> <A-h> <C-\><C-n><C-w>h
-tnoremap <buffer> <A-j> <C-\><C-n><C-w>j
-tnoremap <buffer> <A-k> <C-\><C-n><C-w>k
-tnoremap <buffer> <A-l> <C-\><C-n><C-w>l
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 
 " Alt+[hjkl] to navigate through windows in normal mode
-nnoremap <buffer> <A-h> <C-w>h
-nnoremap <buffer> <A-j> <C-w>j
-nnoremap <buffer> <A-k> <C-w>k
-nnoremap <buffer> <A-l> <C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " Ctrl+Arrows to navigate through windows in insert mode
-tnoremap <buffer> <C-Left>  <C-\><C-n><C-w>h
-tnoremap <buffer> <C-Down>  <C-\><C-n><C-w>j
-tnoremap <buffer> <C-Up>    <C-\><C-n><C-w>k
-tnoremap <buffer> <C-Right> <C-\><C-n><C-w>l
+tnoremap <C-Left>  <C-\><C-n><C-w>h
+tnoremap <C-Down>  <C-\><C-n><C-w>j
+tnoremap <C-Up>    <C-\><C-n><C-w>k
+tnoremap <C-Right> <C-\><C-n><C-w>l
 
 " Ctrl+Arrows to navigate through windows in normal mode
-nnoremap <buffer> <C-Left>  <C-w>h
-nnoremap <buffer> <C-Down>  <C-w>j
-nnoremap <buffer> <C-Up>    <C-w>k
-nnoremap <buffer> <C-Right> <C-w>l
+nnoremap <C-Left>  <C-w>h
+nnoremap <C-Down>  <C-w>j
+nnoremap <C-Up>    <C-w>k
+nnoremap <C-Right> <C-w>l
 
 " FZF mapping
 au FileType fzf tnoremap <Esc> <Esc>
