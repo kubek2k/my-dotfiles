@@ -64,7 +64,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'terryma/vim-expand-region'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
