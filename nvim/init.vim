@@ -1,4 +1,4 @@
-" Leader key
+a Leader key
 let mapleader = ','
 
 " defaults
@@ -74,7 +74,7 @@ Plug 'thinca/vim-textobj-function-javascript/'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'w0rp/ale', { 'for': 'javascript' }
-Plug 'luochen1990/rainbow'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 augroup interoMaps
   au!
