@@ -50,7 +50,7 @@ set updatetime=500
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 autocmd VimEnter * AirlineTheme jellybeans
-let g:airline_powerline_fonts = 1
+autocmd VimEnter * let g:airline_powerline_fonts = 1
 
 Plug 'vimlab/split-term.vim'
 autocmd VimEnter * let g:disable_key_mappings = 1
@@ -206,6 +206,7 @@ let g:ale_fixers = {
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/.config/nvim/js.vim
 
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 call deoplete#initialize()
