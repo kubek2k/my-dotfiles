@@ -66,6 +66,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'junegunn/vim-peekaboo'
+autocmd VimEnter * let g:peekaboo_window = 'vert bo 50new'
+
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
