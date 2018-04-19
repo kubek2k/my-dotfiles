@@ -183,7 +183,7 @@ nnoremap <silent> <leader>ft :Filetypes<CR>
 
 function! SearchWordWithAg()
     execute 'Ag' expand('<cword>')
-  endfunction
+endfunction
 
 function! SearchVisualSelectionWithAg() range
     let old_reg = getreg('"')
