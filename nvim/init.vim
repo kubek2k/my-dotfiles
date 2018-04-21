@@ -72,8 +72,32 @@ autocmd VimEnter * let g:peekaboo_window = 'vert bo 50new'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
-Plug 'thinca/vim-textobj-function-javascript/'
-
+Plug 'sgur/vim-textobj-parameter'
+Plug 'fvictorio/vim-textobj-backticks'
+Plug 'thinca/vim-textobj-function-javascript'
+Plug 'terryma/vim-expand-region'
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'a"'  :0,
+      \ 'i''' :0,
+      \ 'a''' :0,
+      \ 'i`'  :0,
+      \ 'a`'  :0,
+      \ 'i]'  :1,
+      \ 'a]'  :1,
+      \ 'ib'  :1,
+      \ 'ab'  :1,
+      \ 'iB'  :1,
+      \ 'aB'  :1,
+      \ 'ii'  :0,
+      \ 'ai'  :0,
+      \ 'if'  :1,
+      \ 'af'  :1,
+      \ 'i,'  :0,
+      \ 'a,'  :0
+      \ }
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'w0rp/ale', { 'for': 'javascript' }
