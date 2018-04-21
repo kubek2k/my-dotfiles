@@ -216,7 +216,7 @@ call deoplete#initialize()
 
 command TTerm tabe +terminal
 
-nnoremap <leader>tt :TTerm<cr>
+nnoremap <leader>tt :tabe +terminal<cr>
 nnoremap <leader>tv :VTerm<cr>
 nnoremap <leader>te :Term<cr>
 
