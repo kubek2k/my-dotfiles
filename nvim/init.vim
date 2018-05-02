@@ -273,5 +273,4 @@ nnoremap <C-Up>    <C-w>k
 nnoremap <C-Right> <C-w>l
 
 " FZF mapping
-au FileType fzf tnoremap <Esc> <Esc>
-
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
