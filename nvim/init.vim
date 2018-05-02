@@ -274,3 +274,6 @@ nnoremap <C-Right> <C-w>l
 
 " FZF mapping
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+
+nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
+nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
