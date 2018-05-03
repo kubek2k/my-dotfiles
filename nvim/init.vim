@@ -275,5 +275,13 @@ nnoremap <C-Right> <C-w>l
 " FZF mapping
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 
-nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
-nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
+" Convenience for configuration editing
+let s:myVimRC = '$HOME/Dotfiles/nvim/init.vim'
+function! EditConfigInNewTab()
+    exec 'tabe +e ' . s:myVimRC
+    lcd %:p:h
+    call fugitive#detect(getcwd())
+endfunction
+
+execute 'nnoremap <silent> <leader>sc :so ' . s:myVimRC . '<CR>'
+nnoremap <silent> <leader>ec :call EditConfigInNewTab()<CR>
