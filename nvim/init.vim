@@ -238,7 +238,7 @@ call plug#end()
 
 call deoplete#initialize()
 
-command TTerm tabe +terminal
+command! TTerm tabe +terminal
 
 nnoremap <leader>tt :tabe +terminal<cr>
 nnoremap <leader>tv :VTerm<cr>

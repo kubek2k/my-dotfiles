@@ -7,7 +7,7 @@ Plug 'othree/es.next.syntax.vim'
 
 let g:ale_javascript_eslint_use_global = 0
 
-function s:filterModule(value, modules)
+function! s:filterModule(value, modules)
   return index(a:modules, a:value) == -1
 endfunction
 
@@ -22,7 +22,7 @@ let s:script .= 'console.log(Object.keys(process.binding("natives")).filter(func
 let s:script .= '	return !/^_|^internal|\//.test(el) && blacklist.indexOf(el) === -1;'
 let s:script .= '}).sort().join(" "));'
 
-function s:require(command)
+function! s:require(command)
   let args = split(a:command)
 
   if len(s:modules) == 0
@@ -49,19 +49,19 @@ endfunction
 " Completion function for npm
 "
 " Delegates to `npm completion`.
-function s:npmcomplete(lead, line, pos)
+function! s:npmcomplete(lead, line, pos)
   " code
   let cmd = 'COMP_CWORD="0" COMP_LINE="' . a:lead . '" COMP_POINT="' . a:pos . '" npm completion -- "' . a:line . '"'
   return system(cmd)
 endfunction
 
 " Run current file with node
-function s:run()
+function! s:run()
   let bufnr = expand('<bufnr>')
   let file = expand('%:p')
 
   exe 'Term node ' . file
-endf
+endfunction
 
 au FileType javascript setl ts=2 tw=2 sw=2
 " ### Require fs path
