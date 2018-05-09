@@ -1,4 +1,4 @@
-a Leader key
+" Leader key
 let mapleader = ','
 
 " defaults
