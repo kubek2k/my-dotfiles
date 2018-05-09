@@ -1,0 +1,13 @@
+#!/bin/bash
+
+trap 'reset; exit' SIGINT
+
+if [ $# -gt 0 ]; then
+    PATTERN="$1"
+else
+    PATTERN="test/**.js"
+fi
+
+while [ true ]; do
+    fd . | entr -rcd npx mocha --recursive "${PATTERN}"
+done
