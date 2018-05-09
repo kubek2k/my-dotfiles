@@ -106,6 +106,24 @@ Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
+autocmd VimEnter * RainbowParentheses
+
+Plug 'Valloric/ListToggle'
+au VimEnter * nnoremap <silent> <F2> :QToggle<CR>
+au VimEnter * nnoremap <silent> <F3> :LToggle<CR>
+
+Plug 'sunaku/vim-dasht'
+" search related docsets
+au VimEnter * nnoremap <Leader>k :Dasht<Space>
+
+" search ALL the docsets
+au VimEnter * nnoremap <Leader><Leader>k :Dasht!<Space>
+
+" search related docsets
+au VimEnter * nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+
+" search ALL the docsets
+au VimEnter * nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
 augroup interoMaps
   au!
