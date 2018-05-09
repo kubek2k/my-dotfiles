@@ -166,7 +166,7 @@ augroup END
 
 " Disable haskell-vim omnifunc
 au FileType haskell let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Deoplete
 autocmd VimEnter * inoremap <silent><expr> <Tab>
@@ -176,16 +176,9 @@ autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
 \ deoplete#mappings#manual_complete()
 
-autocmd VimEnter * let g:deoplete#omni_patterns = {}
-autocmd VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-autocmd VimEnter * let g:deoplete#enable_at_startup = 1
-
-" Fugitive key bindings
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>ga :Gwrite<cr>
-nmap <leader>gl :Glog<cr>
-nmap <leader>gd :Gdiff<cr>
+au VimEnter * let g:deoplete#omni_patterns = {}
+au VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+au VimEnter * let g:deoplete#enable_at_startup = 1
 
 " Ack
 if executable('ag')
@@ -253,7 +246,11 @@ let g:ale_fixers = {
 \}
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
-source $HOME/.config/nvim/js.vim
+source $HOME/Dotfiles/nvim/js.vim
+source $HOME/Dotfiles/nvim/heroku.vim
+source $HOME/Dotfiles/nvim/elixir.vim
+source $HOME/Dotfiles/nvim/aws.vim
+source $HOME/Dotfiles/nvim/git.vim
 
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -268,7 +265,6 @@ nnoremap <leader>te :Term<cr>
 
 " Allow hitting <Esc> to switch to normal mode
 tnoremap <Esc> <C-\><C-n>
-inoremap <Esc> <C-\><C-n>
 
 " Alt+[hjkl] to navigate through windows in insert mode
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -307,3 +303,19 @@ endfunction
 
 execute 'nnoremap <silent> <leader>sc :so ' . s:myVimRC . '<CR>'
 nnoremap <silent> <leader>ec :call EditConfigInNewTab()<CR>
+
+source $HOME/.nix-profile/share/gtags/gtags.vim
+nnoremap <C-\> :Gtags 
+nnoremap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>d :Gtags -d <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-]> :GtagsCursor<CR>
+nnoremap <C-\><C-n> :tn<CR>
+nnoremap <C-\><C-p> :tp<CR>
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+
+source $HOME/Dotfiles/nvim/gtags-fzf.vim
+nnoremap <leader>s :Symbols<CR>
+nnoremap <leader>d :Definitions<CR>
+nnoremap <leader>r :References<CR>

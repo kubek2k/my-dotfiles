@@ -1,5 +1,5 @@
-Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'ternjs/tern_for_vim'
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
@@ -81,6 +81,8 @@ au FileType javascript command! -nargs=* NodeRun call s:run()
 
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#enable_smart_case = 1
-au FileType javascript,jsx setl omnifunc=tern#Complete
-autocmd VimEnter * let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
+" au FileType javascript,jsx setl omnifunc=tern#Complete
+" autocmd VimEnter * let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
 
+au FileType javascript command! -nargs=* -complete=file VMocha :VTerm npx -p foreman nf run entr_mocha <args>
+au FileType javascript command! -nargs=* -complete=file VNode :VTerm npx -p foreman nf run entr_node <args>
