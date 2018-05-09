@@ -1,4 +1,4 @@
-export PATH=/usr/local/go/bin:/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python
+export PATH=/usr/local/go/bin:/usr/local/bin:/usr/local/git/bin:$PATH:/usr/local/smlnj-110.75/bin:/usr/local/share/python:${HOME}/Dotfiles/scripts
 export PATH=${HOME}/.local/bin:/usr/local/share/npm/bin:/Users/kubek2k/.cache/rebar3/bin:$PATH
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home"
@@ -36,7 +36,6 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 export EDITOR=nvim
 alias v=nvim
 alias s=soji
-
 function send_notification {
     MESSAGE=$1
     terminal-notifier -message "$MESSAGE" -title "Bash notification"
@@ -56,8 +55,35 @@ function o {
 }
 
 function connect_to_heroku_psql {
-    URL=`heroku config:get -s DATABASE_URL | sed -e 's/DATABASE_URL=//'`
-    psql "$URL"
+    local env_name
+    env_name="$1"
+    if [ -z "$env_name" ]; then
+        echo "Falling back to DATABASE_URL"
+        env_name="DATABASE_URL"
+    fi
+    URL=`heroku config:get "${env_name}"`
+    connect_to_psql "$URL"
+}
+
+function connect_to_local_psql {
+    local env_name
+    env_name="$1"
+    if [ -z "$env_name" ]; then
+        echo "Falling back to DATABASE_URL"
+        env_name="DATABASE_URL"
+    fi
+    URL=`cat .env | grep ${env_name} | head | cut -f2 -d= | tr -d "\'"`
+    echo "$URL"
+    connect_to_psql "$URL"
+}
+
+function connect_to_psql {
+    if [ -z "$1" ]; then
+        echo "No connection URL provided" >&2
+        return 1
+    fi
+    URL="$1"
+    docker run -it postgres psql "$1"
 }
 
 function encodeURIComponent() {
@@ -95,7 +121,7 @@ function ocpr {
    git checkout -b "$BRANCH_NAME"
    git add .
    git commit -m "$1"
-   git push
+   git push origin
    hub pull-request
 }
 
