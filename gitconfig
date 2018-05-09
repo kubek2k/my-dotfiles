@@ -7,6 +7,7 @@
 	lol = log --format=oneline --abbrev-commit --decorate --graph --all
     st = status
     co = checkout
+    pr = pull-request
 [push]
 # Push current branch even if you've never pushed it before
 	default = current
