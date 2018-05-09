@@ -37,7 +37,7 @@ Plug 'nanotech/jellybeans.vim'
 autocmd VimEnter * set background=dark
 autocmd VimEnter * colorscheme jellybeans
 
-Plug 'neomake/neomake', { 'for': 'haskell' }
+Plug 'neomake/neomake', { 'for': ['haskell', 'elixir'] }
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
