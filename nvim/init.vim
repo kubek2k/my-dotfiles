@@ -54,7 +54,7 @@ set updatetime=500
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 autocmd VimEnter * AirlineTheme jellybeans
-autocmd VimEnter * let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
 Plug 'vimlab/split-term.vim'
 autocmd VimEnter * let g:disable_key_mappings = 1
@@ -251,6 +251,7 @@ source $HOME/Dotfiles/nvim/heroku.vim
 source $HOME/Dotfiles/nvim/elixir.vim
 source $HOME/Dotfiles/nvim/aws.vim
 source $HOME/Dotfiles/nvim/git.vim
+source $HOME/Dotfiles/nvim/soji.vim
 
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
