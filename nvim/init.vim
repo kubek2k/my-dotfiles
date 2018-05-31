@@ -254,6 +254,15 @@ source $HOME/Dotfiles/nvim/git.vim
 source $HOME/Dotfiles/nvim/soji.vim
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'diepm/vim-rest-console'
+autocmd VimEnter * let g:vrc_response_default_content_type = 'application/json'
+autocmd VimEnter * let g:vrc_show_command = 1
+autocmd VimEnter * let g:vrc_curl_opts = {
+  \ '-sS': '' 
+  \}
+command! VRCScrapebook Files $HOME/.vrc/
+nnoremap <leader>vs :VRCScrapebook<cr>
+command! -nargs=1 VRCNewScrapebook e $HOME/.vrc/<args>.rest"
 call plug#end()
 
 call deoplete#initialize()
