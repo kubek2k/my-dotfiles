@@ -102,6 +102,6 @@ fchooseapp() {
 # open heroshell with proper app
 fheroshell() {
   local app
-  app=`runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
+  app=`RUNCACHED_PERIOD=180 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
   heroshell "${app}"
 }

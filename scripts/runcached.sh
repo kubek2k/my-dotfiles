@@ -8,7 +8,7 @@
 # Thu Jun 14 13:11:28 EEST 2012
 ####################################################33
 
-cacheperiod=60 #seconds
+cacheperiod=${RUNCACHED_PERIOD:-60} #seconds
 savedir="/tmp"
 ####################################################33
 
