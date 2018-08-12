@@ -37,10 +37,10 @@ Plug 'nanotech/jellybeans.vim'
 autocmd VimEnter * set background=dark
 autocmd VimEnter * colorscheme jellybeans
 
-Plug 'neomake/neomake', { 'for': ['haskell', 'elixir'] }
+Plug 'neomake/neomake'
 autocmd! BufWritePost *.hs Neomake!
 autocmd! BufWritePost *.ex Neomake! mix
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
