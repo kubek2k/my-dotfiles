@@ -203,7 +203,6 @@ in
   nix.buildCores = 8;
 
   nixpkgs.overlays = [ overlays ];
-
   services.chunkwm.enable = true;
   services.chunkwm.package = pkgs.chunkwm.core;
   services.chunkwm.plugins.list = [ "ffm" "tiling" ];
