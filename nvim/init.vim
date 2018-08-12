@@ -42,7 +42,6 @@ autocmd! BufWritePost *.hs Neomake!
 autocmd! BufWritePost *.ex Neomake! mix
 let g:neomake_open_list = 0
 
-Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -104,6 +103,7 @@ let g:expand_region_text_objects = {
       \ }
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'LnL7/vim-nix'
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
 autocmd VimEnter * RainbowParentheses
@@ -163,9 +163,12 @@ augroup interoMaps
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
   let g:intero_ghci_options='-Wall'
+  let g:intero_use_neomake = 1
 augroup END
 
 " Disable haskell-vim omnifunc
+au FileType haskell let g:necoghc_use_stack = 1
+au FileType haskell let g:necoghc_enable_detailed_browse = 1
 au FileType haskell let g:haskellmode_completion_ghc = 0
 au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
