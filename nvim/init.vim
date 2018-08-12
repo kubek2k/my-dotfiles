@@ -157,7 +157,7 @@ augroup interoMaps
   au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
 
   " Navigation
-  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+  au FileType haskell nnoremap <silent> gd :InteroGoToDef<CR>
 
   " Managing targets
   " Prompts you to enter targets (no silent):
