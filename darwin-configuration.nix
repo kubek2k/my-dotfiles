@@ -202,6 +202,22 @@ in
   nix.maxJobs = 8;
   nix.buildCores = 8;
 
+  environment.shellAliases.e = "$EDITOR";
+  environment.shellAliases.g = "git log --pretty=color -32";
+  environment.shellAliases.gb = "git branch";
+  environment.shellAliases.gc = "git checkout";
+  environment.shellAliases.gcb = "git checkout -B";
+  environment.shellAliases.gd = "git diff --minimal --patch";
+  environment.shellAliases.gf = "git fetch";
+  environment.shellAliases.gg = "git log --format=oneline --abbrev-commit --decorate --graph --all";
+  environment.shellAliases.gl = "git log --format=oneline --abbrev-commit --all";
+  environment.shellAliases.grh = "git reset --hard";
+  environment.shellAliases.gs = "git status";
+  environment.shellAliases.gpr = "git pull-request";
+  environment.shellAliases.l = "ls -lh";
+  environment.shellAliases.ls = "ls --color";
+  environment.shellAliases.s = "soji";
+
   nixpkgs.overlays = [ overlays ];
   services.chunkwm.enable = true;
   services.chunkwm.package = pkgs.chunkwm.core;
