@@ -157,10 +157,6 @@ case "$TERM" in
         ;;
 esac
 
-
-# git completion
-[[ -s /usr/local/git/contrib/completion/git-completion.bash ]] && source /usr/local/git/contrib/completion/git-completion.bash
-
 # brew completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
