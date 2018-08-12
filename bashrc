@@ -166,12 +166,13 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# nix completion
-if [ -d "$HOME/.nix-profile/etc/bash_completion.d" ]; then
-    for f in $HOME/.nix-profile/etc/bash_completion.d/*; do
-        source "$f"
-    done
-fi
+# nix completions
+for f in /run/current-system/sw/share/bash-completion/completions/*; do
+    . $f
+done
+for f in /run/current-system/sw/etc/bash_completion.d/*; do
+    . $f
+done
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
