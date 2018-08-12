@@ -43,14 +43,6 @@ function send_notification {
     terminal-notifier -message "$MESSAGE" -title "Bash notification"
 }
 
-function mci {
-    mvn clean install $* && send_notification "`pwd` clean install $* done"
-}
-
-function mcp {
-    mvn clean package $* && send_notification "`pwd` clean package $* done"
-}
-
 function o {
     COMMAND=$*
     $COMMAND && send_notification "'$COMMAND' done" || send_notification "'$COMMAND' not successful'"
