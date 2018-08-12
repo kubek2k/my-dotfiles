@@ -314,12 +314,13 @@ endfunction
 execute 'nnoremap <silent> <leader>sc :so ' . s:myVimRC . '<CR>'
 nnoremap <silent> <leader>ec :call EditConfigInNewTab()<CR>
 
-source $HOME/.nix-profile/share/gtags/gtags.vim
+source $HOME/Dotfiles/nvim/gtags.vim
 nnoremap <C-\> :Gtags 
 nnoremap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>d :Gtags -d <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-]> :GtagsCursor<CR>
+
 nnoremap <C-\><C-n> :tn<CR>
 nnoremap <C-\><C-p> :tp<CR>
 nnoremap <C-n> :cn<CR>
