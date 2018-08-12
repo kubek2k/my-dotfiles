@@ -20,10 +20,6 @@ BLINK=$(tput blink)
 REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
-# show untracked files as %
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-# show dirty state as * and added files as +
-export GIT_PS1_SHOWDIRTYSTATE=1
 # prompt definition
 ORIGINAL_PS1='\[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
 #export PS1='\! ${WHITE}(${YELLOW}\u@\h${WHITE}) ${RED}\w${MAGENTA}${GREEN} \$${NORMAL} '
@@ -37,90 +33,6 @@ export EDITOR=nvim
 alias v=nvim
 alias s=soji
 alias ls='ls --color'
-
-function send_notification {
-    MESSAGE=$1
-    terminal-notifier -message "$MESSAGE" -title "Bash notification"
-}
-
-function o {
-    COMMAND=$*
-    $COMMAND && send_notification "'$COMMAND' done" || send_notification "'$COMMAND' not successful'"
-}
-
-function connect_to_heroku_psql {
-    local env_name
-    env_name="$1"
-    if [ -z "$env_name" ]; then
-        echo "Falling back to DATABASE_URL"
-        env_name="DATABASE_URL"
-    fi
-    URL=`heroku config:get "${env_name}"`
-    connect_to_psql "$URL"
-}
-
-function connect_to_local_psql {
-    local env_name
-    env_name="$1"
-    if [ -z "$env_name" ]; then
-        echo "Falling back to DATABASE_URL"
-        env_name="DATABASE_URL"
-    fi
-    URL=`cat .env | grep ${env_name} | head | cut -f2 -d= | tr -d "\'"`
-    echo "$URL"
-    connect_to_psql "$URL"
-}
-
-function connect_to_psql {
-    if [ -z "$1" ]; then
-        echo "No connection URL provided" >&2
-        return 1
-    fi
-    URL="$1"
-    docker run -it postgres psql "$1"
-}
-
-function encodeURIComponent() {
-    awk 'BEGIN {while (y++ < 125) z[sprintf("%c", y)] = y
-    while (y = substr(ARGV[1], ++j, 1))
-        q = y ~ /[[:alnum:]_.!~*\47()-]/ ? q y : q sprintf("%%%02X", z[y])
-        print q}' "$1"
-}
-
-function set_slack_status {
-    if [ -z "${SLACK_TOKEN}" ]; then
-        echo "Can't set the status because no slack token is provided" >&2
-        return 
-    fi
-    profile=`encodeURIComponent "{\"status_text\": \"$1\", \"status_emoji\": \"$2\"}"`
-    curl -X POST "https://slack.com/api/users.profile.set?token=${SLACK_TOKEN}&profile=${profile}"
-}
-
-function send_to_slack {
-    if [ -z "${SLACK_TOKEN}" ]; then
-        echo "Can't set the status because no slack token is provided" >&2
-        return 
-    fi
-    channel=$1
-    text=`encodeURIComponent "$2"`
-    curl -X POST "https://slack.com/api/chat.postMessage?token=${SLACK_TOKEN}&text=${text}&channel=${channel}&as_user=true"
-}
-
-function ocpr {
-   if [ "$1" == "" ]; then
-       echo "No message provided" > /dev/stderr
-       return 1
-   fi
-   BRANCH_NAME=`echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^A-Za-z]/-/g'`
-   git checkout -b "$BRANCH_NAME"
-   git add .
-   git commit -m "$1"
-   git push origin
-   hub pull-request
-}
-
-# autojump
-[[ -s `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -173,4 +85,6 @@ export NVM_DIR="/Users/kubek2k/.nvm"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-[ -f ~/Dotfiles/bash/fzf ] && source ~/Dotfiles/bash/fzf
+for f in ~/Dotfiles/bash/*; do
+    [ -f "$f" ] && source "$f"
+done
