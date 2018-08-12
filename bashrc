@@ -36,6 +36,8 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 export EDITOR=nvim
 alias v=nvim
 alias s=soji
+alias ls='ls --color'
+
 function send_notification {
     MESSAGE=$1
     terminal-notifier -message "$MESSAGE" -title "Bash notification"
