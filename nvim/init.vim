@@ -326,6 +326,14 @@ nnoremap <C-\><C-p> :tp<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
 
+inoremap <A-a> <C-K>a;
+inoremap <A-e> <C-K>e;
+inoremap <A-c> <C-K>c'
+inoremap <A-o> <C-K>o'
+inoremap <A-n> <C-K>n'
+inoremap <A-x> <C-K>z'
+inoremap <A-z> <C-K>z.
+
 source $HOME/Dotfiles/nvim/gtags-fzf.vim
 nnoremap <leader>s :Symbols<CR>
 nnoremap <leader>d :Definitions<CR>
