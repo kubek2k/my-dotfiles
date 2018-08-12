@@ -125,6 +125,7 @@ au VimEnter * nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand
 " search ALL the docsets
 au VimEnter * nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
+Plug 'parsonsmatt/intero-neovim'
 augroup interoMaps
   au!
   " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
