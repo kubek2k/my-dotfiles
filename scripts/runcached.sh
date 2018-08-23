@@ -56,7 +56,7 @@ function runit {
 
 if [ ! -f "$cmddatafile"  ] ; then  runit ; fi
 
-lastrun=`stat -f "%m" -t "%s"  $cmddatafile`
+lastrun=`stat -c "%Y" $cmddatafile`
 currtime=`date +%s`
 diffsec=$(( (currtime - lastrun) ))
 
