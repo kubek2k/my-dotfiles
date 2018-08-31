@@ -150,6 +150,7 @@ in
     pkgs.bashInteractive
 	pkgs.coreutils
     pkgs.gawk
+    pkgs.bat
 
     pkgs.curl
     pkgs.wget
