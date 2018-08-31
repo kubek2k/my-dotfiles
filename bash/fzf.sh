@@ -10,7 +10,7 @@ source "$(fzf-share)/key-bindings.bash"
 
 export export FZF_DEFAULT_COMMAND='fd --type f .'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--height 100% --preview '(highlight -O ansi -l {} || cat {}) 2> /dev/null'"
+export FZF_CTRL_T_OPTS="--height 100% --preview '(bat --color always --style changes --paging never --theme 1337 {} || cat {}) 2> /dev/null'"
 
 ## fzf functions shamelessly copied from their wiki
 
