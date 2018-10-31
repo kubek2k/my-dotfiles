@@ -15,3 +15,4 @@ end tell
 -- this onto the end of the script:
 
 tell application "iTerm" to activate
+return "Chrome reloaded"
