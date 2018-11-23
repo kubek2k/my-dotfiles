@@ -13,7 +13,7 @@ function ocpr {
    if [ -f $OCPR_REVIEWERS_FILE ]; then
        REVIEWERS_PARAM="-r `cat $OCPR_REVIEWERS_FILE | paste -sd ',' -`"
    fi
-   BRANCH_NAME=`echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^A-Za-z]/-/g'`
+   BRANCH_NAME=`echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^A-Za-z]+/-/g'`
    git checkout -b "$BRANCH_NAME"
    git add .
    git commit -m "$*"

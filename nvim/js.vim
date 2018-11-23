@@ -90,3 +90,5 @@ au FileType javascript command! -nargs=* -complete=file VNode :VTerm npx -p fore
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install prettier',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+let g:prettier#config#single_quote = 'false'
+

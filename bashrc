@@ -84,3 +84,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 for f in ~/Dotfiles/bash/*; do
     [ -f "$f" ] && source "$f"
 done
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
