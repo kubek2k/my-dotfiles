@@ -101,9 +101,12 @@ let g:expand_region_text_objects = {
       \ 'i,'  :0,
       \ 'a,'  :0
       \ }
+Plug 'terryma/vim-multiple-cursors'
+
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'LnL7/vim-nix'
+Plug 'raichoo/purescript-vim'
 Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
 autocmd VimEnter * RainbowParentheses

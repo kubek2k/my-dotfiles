@@ -182,7 +182,15 @@ in
 
     pkgs.pwgen
 
+    pkgs.terraform
+
     pkgs.gnupg
+    pkgs.dhall
+    ];
+
+    environment.pathsToLink = [
+      "/share/vim-plugins"
+      "/share/emacs/site-lisp"
     ];
 
   # Auto upgrade nix package and the daemon service.
@@ -200,9 +208,11 @@ in
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
-  nix.maxJobs = 8;
+  nix.maxJobs = 4;
   nix.buildCores = 8;
 
+  environment.variables.EDITOR = "nvim";
+ 
   environment.shellAliases.e = "$EDITOR";
   environment.shellAliases.g = "git log --pretty=color -32";
   environment.shellAliases.gb = "git branch";
@@ -281,8 +291,8 @@ in
 	${modMask} - d : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge east; chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge west
     # spaces ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
     # switch 
-    ${modMask} + alt - a                  : chunkc tiling::desktop --focus prev
-    ${modMask} + alt - r                  : chunkc tiling::desktop --focus next
+#    ${modMask} + alt - a                  : chunkc tiling::desktop --focus prev
+#    ${modMask} + alt - r                  : chunkc tiling::desktop --focus next
     # send window 
     ${moveMask} - a          : chunkc tiling::window --send-to-desktop prev -D
     ${moveMask} - r          : chunkc tiling::window --send-to-desktop next -D
