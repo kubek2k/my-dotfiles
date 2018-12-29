@@ -274,6 +274,9 @@ call plug#end()
 
 call deoplete#initialize()
 
+" repeat last edit for each line in visual selectio mode
+xnoremap . :normal .<CR> 
+
 nnoremap <leader>tt :tabe +terminal<cr>i
 nnoremap <leader>tv :VTerm<cr>
 nnoremap <leader>te :Term<cr>
