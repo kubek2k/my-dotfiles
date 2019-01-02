@@ -141,8 +141,7 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-  [ pkgs.nix-repl
-    pkgs.fzf
+  [ pkgs.fzf
     pkgs.fd
     pkgs.entr
     pkgs.jq
