@@ -98,3 +98,12 @@ fheroshell() {
   app=`RUNCACHED_PERIOD=180 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
   heroshell "${app}"
 }
+
+fherocurl() {
+  local app
+  app=`RUNCACHED_PERIOD=180 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
+  hostname=`heroku domains -a nxt-omni-content-stage --json | jq '[.[] | {hostname: .hostname, kind: .kind}] | sort_by(.kind) | .[] | .hostname' -r | head -n 1`
+  path="$1"
+  shift
+  curl https://${hostname}/${path#\/} $*
+}
