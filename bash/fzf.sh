@@ -88,7 +88,7 @@ fcoc() {
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
-fchooseapp() {
+fherokuapp() {
   heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf
 }
 
