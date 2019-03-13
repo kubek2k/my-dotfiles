@@ -89,20 +89,20 @@ fcoc() {
 }
 
 fherokuapp() {
-  heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf
+  RUNCACHED_PERIOD=360 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf
 }
 
 # open heroshell with proper app
 fheroshell() {
   local app
-  app=`RUNCACHED_PERIOD=180 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
+  app=`fherokuapp`
   heroshell "${app}"
 }
 
 fherocurl() {
   local app
-  app=`RUNCACHED_PERIOD=180 runcached.sh heroku list -A | grep -v '^=' | grep -v '^\s*$' | awk '{ print $1 }' | fzf`
-  hostname=`heroku domains -a nxt-omni-content-stage --json | jq '[.[] | {hostname: .hostname, kind: .kind}] | sort_by(.kind) | .[] | .hostname' -r | head -n 1`
+  app=`fherokuapp`
+  hostname=`heroku domains -a ${app} --json | jq '[.[] | {hostname: .hostname, kind: .kind}] | sort_by(.kind) | .[] | .hostname' -r | head -n 1`
   path="$1"
   shift
   curl https://${hostname}/${path#\/} $*
