@@ -122,5 +122,5 @@ fopenissue() {
 
 fissueurl() {
   local issue_url
-  fchooseissue | rev | cut -f1 -d' ' | rev | pbcopy
+  fchooseissue | rev | cut -f1 -d' ' | rev
 }
