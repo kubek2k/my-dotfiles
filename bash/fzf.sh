@@ -109,7 +109,7 @@ fherocurl() {
 }
 
 fchooseissue() {
-  hub issue -f '%I %t %U%n' | fzf
+  RUNCACHED_PERIOD=360 runcached.sh hub issue -f '%I %t %U%n' | fzf
 }
 
 fopenissue() {
