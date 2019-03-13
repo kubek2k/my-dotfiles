@@ -107,3 +107,20 @@ fherocurl() {
   shift
   curl https://${hostname}/${path#\/} $*
 }
+
+fchooseissue() {
+  hub issue -f '%I %t %U%n' | fzf
+}
+
+fopenissue() {
+  local issue_number
+  issue_number=`fchooseissue | cut -f1 -d' '`
+  local session_name
+  session_name="issue-${issue_number}"
+  tmux new -s "${session_name}" "hub issue show ${issue_number} | mdless" 
+}
+
+fissueurl() {
+  local issue_url
+  fchooseissue | rev | cut -f1 -d' ' | rev | pbcopy
+}
