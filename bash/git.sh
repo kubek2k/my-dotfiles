@@ -9,9 +9,8 @@ function ocpr {
        echo "No message provided" > /dev/stderr
        return 1
    fi
-   OCPR_REVIEWERS_FILE="$(git rev-parse --show-toplevel)/.ocpr-reviewers" 
-   if [ -f $OCPR_REVIEWERS_FILE ]; then
-       REVIEWERS_PARAM="-r `cat $OCPR_REVIEWERS_FILE | paste -sd ',' -`"
+   if [ -z "$OCPR_REVIEWERS" ]; then
+     echo "Be advised that there are no reviewers provided"
    fi
    BRANCH_NAME=`echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^A-Za-z]/-/g' | sed -e 's/--*/-/g'`
    git checkout -b "$BRANCH_NAME"

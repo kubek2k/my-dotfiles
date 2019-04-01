@@ -150,6 +150,8 @@ in
 	pkgs.coreutils
     pkgs.gawk
     pkgs.bat
+    pkgs.findutils
+    pkgs.direnv
 
     pkgs.curl
     pkgs.wget
