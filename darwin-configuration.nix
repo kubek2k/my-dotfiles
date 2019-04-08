@@ -141,13 +141,14 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-  [ pkgs.fzf
+    [ 
+    pkgs.fzf
     pkgs.fd
     pkgs.entr
     pkgs.jq
     pkgs.autojump
     pkgs.bashInteractive
-	pkgs.coreutils
+    pkgs.coreutils
     pkgs.gawk
     pkgs.bat
     pkgs.findutils
@@ -159,15 +160,11 @@ in
     pkgs.neovim
     pkgs.global
     pkgs.ctags
-    pkgs.ranger
     pkgs.highlight
 
     pkgs.gitAndTools.gitFull
     pkgs.gist
     pkgs.gitAndTools.hub
-    pkgs.git-secret
-
-    pkgs.ncftp
 
     pkgs.awscli
     pkgs.travis
@@ -182,8 +179,6 @@ in
     pkgs.ag
 
     pkgs.pwgen
-
-    pkgs.terraform
 
     pkgs.gnupg
     pkgs.dhall
