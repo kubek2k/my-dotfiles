@@ -17,5 +17,5 @@ function ocpr {
    git add .
    git commit -m "$*"
    git push origin
-   hub pull-request -o $REVIEWERS_PARAM
+   hub pull-request -b -a $OCPR_REVIEWERS
 }
