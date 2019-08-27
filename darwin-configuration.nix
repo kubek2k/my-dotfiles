@@ -4,18 +4,18 @@ let
   keycodes = import ./nix/keycodes.nix;
 
   overlays = self: super: rec {
-    openITerm = pkgs.writeScriptBin "openITerm" ''#!/usr/bin/osascript
+    openITerm = super.writeScriptBin "openITerm" ''#!/usr/bin/osascript
       tell application "iTerm"
         create window with default profile
       end tell 
       '';
 
-    openNVim = pkgs.writeScriptBin "openNvim" ''#!/usr/bin/osascript
+    openNVim = super.writeScriptBin "openNvim" ''#!/usr/bin/osascript
       tell application "iTerm"
         create window with default profile command "/run/current-system/sw/bin/nvim"
       end tell 
       '';
-    };
+  };
 in
   {
   # List packages installed in system profile. To search by name, run:
@@ -58,6 +58,7 @@ in
     pkgs.lzma
     pkgs.ag
 
+    pkgs.weechat
     pkgs.pwgen
 
     pkgs.gnupg
