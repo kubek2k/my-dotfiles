@@ -1,4 +1,5 @@
 self: super: {
-  todoist = import ./todoist self;
-  cloudflare-cli = (import ./cfcli { pkgs = self; }).cloudflare-cli;
+  todoist = import ./todoist super;
+  cloudflare-cli = (import ./cfcli { pkgs = super; }).cloudflare-cli;
+  weechat = import ./weechat super;
 }
