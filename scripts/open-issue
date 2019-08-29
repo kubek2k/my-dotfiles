@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "$0 <issue_number>" > /dev/stderr
+  exit 1
+fi
+
+hub issue show $1 | mdless
