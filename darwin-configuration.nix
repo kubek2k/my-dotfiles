@@ -185,4 +185,6 @@ in
     # reset  ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
     ${modMask} - q                       : killall chunkwm
   '';
+
+  environment.shellAliases = import ./nix/aliases.nix;
 }
