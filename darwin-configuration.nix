@@ -49,9 +49,6 @@ in
     pkgs.awscli
     pkgs.travis
 
-    pkgs.chunkwm.core
-    pkgs.chunkwm.ffm
-    pkgs.chunkwm.tiling
     pkgs.openITerm
     pkgs.openNVim
 
