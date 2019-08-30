@@ -184,7 +184,7 @@ in
   programs.bash.enableCompletion = true;
 
   environment.shellAliases = import ./nix/aliases.nix;
-  environment.variables.EDITOR = "nvim";
+  environment.variables = import ./nix/variables.nix;
 
   programs.tmux.enable = true;
   programs.tmux.enableSensible = true;
