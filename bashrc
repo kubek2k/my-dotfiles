@@ -29,9 +29,6 @@ esac
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 for f in ~/Dotfiles/bash/*; do
     [ -f "$f" ] && source "$f"
 done
