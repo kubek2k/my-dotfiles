@@ -78,11 +78,6 @@ in
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.bash.enable = true;
-  # programs.zsh.enable = true;
-  # programs.fish.enable = true;
-
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 3;
@@ -97,8 +92,6 @@ in
     "/nix/var/nix/profiles/per-user/root/channels"
     "nixpkgs-overlays=$HOME/Dotfiles/nix/overlays"
   ];
-
-  environment.variables.EDITOR = "nvim";
  
   nixpkgs.overlays = [ 
     overlays
@@ -186,5 +179,14 @@ in
     ${modMask} - q                       : killall chunkwm
   '';
 
+  # Create /etc/bashrc that loads the nix-darwin environment.
+  programs.bash.enable = true;
+
   environment.shellAliases = import ./nix/aliases.nix;
+  environment.variables.EDITOR = "nvim";
+
+  programs.tmux.enable = true;
+  programs.tmuxEnableSensible = true;
+  programs.tmux.enableFzf = true;
+  programs.tmux.enableVim = true;
 }
