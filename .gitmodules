@@ -1,3 +1,0 @@
-[submodule "completions/fab"]
-	path = completions/fab
-	url = https://github.com/marcelor/fabric-bash-autocompletion
