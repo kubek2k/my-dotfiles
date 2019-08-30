@@ -51,9 +51,6 @@ done
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
-# added by travis gem
-[ -f /Users/kubek2k/.travis/travis.sh ] && source /Users/kubek2k/.travis/travis.sh
-
 export NVM_DIR="/Users/kubek2k/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
