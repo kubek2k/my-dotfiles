@@ -181,12 +181,13 @@ in
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
+  programs.bash.enableCompletion = true;
 
   environment.shellAliases = import ./nix/aliases.nix;
   environment.variables.EDITOR = "nvim";
 
   programs.tmux.enable = true;
-  programs.tmuxEnableSensible = true;
+  programs.tmux.enableSensible = true;
   programs.tmux.enableFzf = true;
   programs.tmux.enableVim = true;
 }

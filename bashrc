@@ -32,14 +32,6 @@ case "$TERM" in
         PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;${PWD}\007\""
 esac
 
-# nix completions
-for f in /run/current-system/sw/share/bash-completion/completions/*; do
-    . $f
-done
-for f in /run/current-system/sw/etc/bash_completion.d/*; do
-    . $f
-done
-
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
 export NVM_DIR="/Users/kubek2k/.nvm"
