@@ -67,6 +67,8 @@ in
     pkgs.Dash
     pkgs.Docker
     pkgs.Focus
+
+    pkgs.myscripts
     ];
 
     environment.pathsToLink = [
@@ -181,7 +183,6 @@ in
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
-  programs.bash.enableCompletion = true;
 
   environment.shellAliases = import ./nix/aliases.nix;
   environment.variables = import ./nix/variables.nix;
