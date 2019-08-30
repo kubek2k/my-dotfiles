@@ -32,11 +32,6 @@ case "$TERM" in
         PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;${PWD}\007\""
 esac
 
-# brew completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
 # nix completions
 for f in /run/current-system/sw/share/bash-completion/completions/*; do
     . $f
