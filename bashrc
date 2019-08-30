@@ -34,9 +34,6 @@ esac
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 
-export NVM_DIR="/Users/kubek2k/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -45,6 +42,5 @@ for f in ~/Dotfiles/bash/*; do
 done
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(direnv hook bash)"
