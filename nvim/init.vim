@@ -132,53 +132,6 @@ au VimEnter * nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand
 " search ALL the docsets
 au VimEnter * nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
-Plug 'parsonsmatt/intero-neovim'
-augroup interoMaps
-  au!
-  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
-
-  " Background process and window management
-  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-
-  " Open intero/GHCi split horizontally
-  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-  " Open intero/GHCi split vertically
-  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
-
-  " Reloading (pick one)
-  " Automatically reload on save
-  au BufWritePost *.hs InteroReload
-  " Manually save and reload
-  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
-
-  " Load individual modules
-  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
-
-  " Type-related information
-  " Heads up! These next two differ from the rest.
-  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-  au FileType haskell map <silent> <leader>T <Plug>InteroType
-  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-
-  " Navigation
-  au FileType haskell nnoremap <silent> gd :InteroGoToDef<CR>
-
-  " Managing targets
-  " Prompts you to enter targets (no silent):
-  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-  let g:intero_ghci_options='-Wall'
-  let g:intero_use_neomake = 1
-augroup END
-
-" Disable haskell-vim omnifunc
-au FileType haskell let g:necoghc_use_stack = 1
-au FileType haskell let g:necoghc_enable_detailed_browse = 1
-au FileType haskell let g:haskellmode_completion_ghc = 0
-au FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 " Deoplete
 autocmd VimEnter * inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
@@ -258,11 +211,13 @@ let g:ale_fixers = {
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/Dotfiles/nvim/js.vim
+source $HOME/Dotfiles/nvim/js.vim
 source $HOME/Dotfiles/nvim/heroku.vim
 source $HOME/Dotfiles/nvim/elixir.vim
 source $HOME/Dotfiles/nvim/aws.vim
 source $HOME/Dotfiles/nvim/git.vim
 source $HOME/Dotfiles/nvim/soji.vim
+source $HOME/Dotfiles/nvim/haskell.vim
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'diepm/vim-rest-console'
