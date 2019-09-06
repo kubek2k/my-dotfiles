@@ -74,6 +74,7 @@ in
     environment.pathsToLink = [
       "/share/vim-plugins"
       "/share/emacs/site-lisp"
+      "/share/git"
     ];
 
   # Auto upgrade nix package and the daemon service.
@@ -181,11 +182,13 @@ in
     ${modMask} - q                       : killall chunkwm
   '';
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.bash.enable = true;
-
   environment.shellAliases = import ./nix/aliases.nix;
   environment.variables = import ./nix/variables.nix;
+  environment.loginShell = "/run/current-system/sw/bin/bash";
+
+  # Create /etc/bashrc that loads the nix-darwin environment.
+  programs.bash.enable = true;
+  programs.bash.enableCompletion = true;
 
   programs.tmux.enable = true;
   programs.tmux.enableSensible = true;
