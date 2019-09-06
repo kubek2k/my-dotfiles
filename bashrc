@@ -24,7 +24,7 @@ export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji statu
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-        PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;\${PWD}\007\""
+        PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;\`pwd\`\007\""
 esac
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
