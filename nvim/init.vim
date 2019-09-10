@@ -43,7 +43,6 @@ autocmd! BufWritePost *.ex Neomake! mix
 let g:neomake_open_list = 0
 
 Plug 'eagletmt/neco-ghc'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -132,18 +131,6 @@ au VimEnter * nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand
 " search ALL the docsets
 au VimEnter * nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
-" Deoplete
-autocmd VimEnter * inoremap <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" :
-\ "\<Tab>"
-autocmd VimEnter * inoremap <silent><expr> <S-Tab>
-\ pumvisible() ? "\<C-p>" :
-\ deoplete#mappings#manual_complete()
-
-au VimEnter * let g:deoplete#omni_patterns = {}
-au VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-au VimEnter * let g:deoplete#enable_at_startup = 1
-
 " Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -178,8 +165,8 @@ nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 nnoremap <silent> <leader>. :AgIn 
 
-nnoremap <silent> K :call SearchWordWithAg()<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>K :call SearchWordWithAg()<CR>
+vnoremap <silent> <leader>K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gb :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
@@ -218,6 +205,7 @@ source $HOME/Dotfiles/nvim/aws.vim
 source $HOME/Dotfiles/nvim/git.vim
 source $HOME/Dotfiles/nvim/soji.vim
 source $HOME/Dotfiles/nvim/haskell.vim
+source $HOME/Dotfiles/nvim/coc.vim
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'diepm/vim-rest-console'
@@ -230,8 +218,6 @@ command! VRCScrapebook Files $HOME/.vrc/
 nnoremap <leader>vs :VRCScrapebook<cr>
 command! -nargs=1 VRCNewScrapebook e $HOME/.vrc/<args>.rest"
 call plug#end()
-
-call deoplete#initialize()
 
 " repeat last edit for each line in visual selectio mode
 xnoremap . :normal .<CR> 
