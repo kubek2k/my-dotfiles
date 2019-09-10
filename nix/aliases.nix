@@ -10,5 +10,6 @@
   gl = "git log --pretty=nocolor";
   grh = "git reset --hard";
   gs = "git status";
-  l = "ls -lh";
+  l = "ls -lh --color=auto";
+  ls = "ls --color=auto";
 }
