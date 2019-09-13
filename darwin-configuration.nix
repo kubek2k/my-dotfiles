@@ -15,7 +15,12 @@ let
         create window with default profile command "/run/current-system/sw/bin/nvim"
       end tell 
       '';
+
   };
+
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+
+  cachix = (import (fetchTarball "https://cachix.org/api/v1/install") {}).cachix;
 in
   {
   # List packages installed in system profile. To search by name, run:
@@ -69,6 +74,8 @@ in
     pkgs.Focus
 
     pkgs.myscripts
+    cachix
+    (all-hies.selection { selector = p: { inherit (p) ghc844 ghc864; }; })
     ];
 
     environment.pathsToLink = [
