@@ -69,6 +69,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/vim-peekaboo'
 autocmd VimEnter * let g:peekaboo_window = 'vert bo 50new'
