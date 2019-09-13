@@ -281,6 +281,7 @@ nnoremap <C-\><C-p> :tp<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
 
+" Polish letters
 inoremap <A-a> <C-K>a;
 inoremap <A-e> <C-K>e;
 inoremap <A-c> <C-K>c'
