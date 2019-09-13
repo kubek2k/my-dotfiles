@@ -69,7 +69,30 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
+
 Plug 'easymotion/vim-easymotion'
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+omap t <Plug>(easymotion-bd-tl)
+
+
+" Easymotion - changing all mappings to bidirectional
+" <Leader>f{char} to move to {char}
+map  <Plug>(easymotion-prefix)f <Plug>(easymotion-bd-f)
+" Move to line
+map <Plug>(easymotion-prefix)L <Plug>(easymotion-bd-jk)
+" Move to word
+map  <Plug>(easymotion-prefix)w <Plug>(easymotion-bd-w)
+" Move to end of word
+map  <Plug>(easymotion-prefix)e <Plug>(easymotion-bd-e)
 
 Plug 'junegunn/vim-peekaboo'
 autocmd VimEnter * let g:peekaboo_window = 'vert bo 50new'
