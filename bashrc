@@ -17,9 +17,15 @@ REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
 # prompt definition
-ORIGINAL_PS1='\[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
 #export PS1='\! ${WHITE}(${YELLOW}\u@\h${WHITE}) ${RED}\w${MAGENTA}${GREEN} \$${NORMAL} '
-export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji status`: ${ORIGINAL_PS1}"'
+if [[ $IN_NIX_SHELL == "impure" ]]; then 
+    export PROMPT_COMMAND='PS1="(impure) \[${YELLOW}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] "'
+elif [[ $IN_NIX_SHELL == "pure" ]]; then
+    export PROMPT_COMMAND='PS1="(pure) \[${LIME_YELLOW}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] "'
+else
+    ORIGINAL_PS1='\[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
+    export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji status`: ${ORIGINAL_PS1}"'
+fi
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
