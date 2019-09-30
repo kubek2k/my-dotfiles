@@ -40,3 +40,5 @@ for f in ~/Dotfiles/bash/*; do
 done
 
 eval "$(direnv hook bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
