@@ -4,7 +4,7 @@
   sourceRoot = "Dash.app";
   src = fetchurl {
     url = https://kapeli.com/downloads/v4/Dash.zip;
-    sha256 = "0zvc119n30ya7xja4f2ksgqcdf8c4xjzszr8w0zgm8w65nfsi8y1";
+    sha256 = "1dkrzh4l5an0z7qv25irmagssaymscjzzgdn1jha11sqhhna9lh1";
   };
   description = "Dash is an API Documentation Browser and Code Snippet Manager";
   homepage = https://kapeli.com/dash;
