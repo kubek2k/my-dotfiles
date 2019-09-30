@@ -90,7 +90,8 @@ in
   nix.maxJobs = 4;
   nix.buildCores = 8;
   nix.nixPath = [ 
-    "darwin=$HOME/.nix-defexpr/darwin"
+    "darwin=$HOME/.nix-defexpr/channels/darwin"
+    "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs"
     "darwin-config=$HOME/.nixpkgs/darwin-configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
     "nixpkgs-overlays=$HOME/Dotfiles/nix/overlays"
@@ -189,9 +190,19 @@ in
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
   programs.bash.enableCompletion = true;
+  programs.bash.interactiveShellInit = ''
+    if [ -f $HOME/.bashrc ]; then
+      source $HOME/.bashrc
+    fi
+  '';
 
   programs.tmux.enable = true;
   programs.tmux.enableSensible = true;
   programs.tmux.enableFzf = true;
   programs.tmux.enableVim = true;
+
+  fonts = {
+    enableFontDir = true;
+    fonts = [ pkgs.fira-code pkgs.nerdfonts pkgs.powerline-fonts ];
+  };
 }
