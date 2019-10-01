@@ -36,6 +36,7 @@ in
 
     pkgs.curl
     pkgs.wget
+    pkgs.guile
 
     pkgs.neovim
     pkgs.global
