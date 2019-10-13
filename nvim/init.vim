@@ -194,6 +194,7 @@ vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gb :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
+nnoremap <silent> gf :call OpenFileUnderCursor()<CR>
 
 function! SearchWordWithAg()
     execute 'Ag' expand('<cword>')
@@ -209,6 +210,17 @@ function! SearchVisualSelectionWithAg() range
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
     execute 'Ag' selection
+endfunction
+
+function! OpenFileUnderCursor()
+    let underCursor = expand(expand("<cfile>"))
+    if filereadable(underCursor) 
+        execute "edit " . underCursor
+    else 
+        return fzf#vim#files("", {
+               \    'options': ['-q', underCursor]
+               \})
+    endif
 endfunction
 
 let g:rainbow_active = 1
