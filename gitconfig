@@ -1,6 +1,6 @@
 [user]
 	name = Jakub Janczak
-	email = jakub.janczak@schibsted.pl
+	email = jakub.janczak@scrive.com
 [color]
 	ui = auto
 [alias]
@@ -11,8 +11,6 @@
 [push]
 # Push current branch even if you've never pushed it before
 	default = current
-[hub]
-	host = github.schibsted.io
 [core]
 	excludesfile = ~/.gitignore
 [merge]
