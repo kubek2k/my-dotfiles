@@ -263,6 +263,9 @@ nnoremap <leader>tt :tabe +terminal<cr>i
 nnoremap <leader>tv :VTerm<cr>
 nnoremap <leader>te :Term<cr>
 
+" Show all matched tags when there are more available to not get confused
+nnoremap <C-]> g<C-]>
+
 " Allow hitting <Esc> to switch to normal mode
 tnoremap <Esc> <C-\><C-n>
 
