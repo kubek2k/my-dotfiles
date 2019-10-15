@@ -234,7 +234,6 @@ let g:ale_fixers = {
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/Dotfiles/nvim/js.vim
-source $HOME/Dotfiles/nvim/js.vim
 source $HOME/Dotfiles/nvim/heroku.vim
 source $HOME/Dotfiles/nvim/elixir.vim
 source $HOME/Dotfiles/nvim/aws.vim
