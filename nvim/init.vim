@@ -223,6 +223,26 @@ function! OpenFileUnderCursor()
     endif
 endfunction
 
+function! JumpToTag()
+    let qflist = []
+    let underCursor = expand("<cexpr>")
+    let matchingTags = taglist(underCursor)
+    if len(matchingTags) == 1
+        call add(qflist, {
+        \ 'filename': matchingTags[0].filename,
+        \ 'pattern': substitute(matchingTags[0].cmd, '^/\(.*\)/$', '\1', ''),
+        \ })
+        call setqflist(qflist)
+        silent cfirst
+        normal! zz
+    else
+        return fzf#vim#tags(underCursor)
+    endif
+endfunction
+
+" Show all matched tags when there are more available to not get confused
+nnoremap <C-]> :call JumpToTag()<CR>
+
 let g:rainbow_active = 1
 
 let g:ale_fix_on_save = 1
@@ -261,9 +281,6 @@ xnoremap . :normal .<CR>
 nnoremap <leader>tt :tabe +terminal<cr>i
 nnoremap <leader>tv :VTerm<cr>
 nnoremap <leader>te :Term<cr>
-
-" Show all matched tags when there are more available to not get confused
-nnoremap <C-]> g<C-]>
 
 " Allow hitting <Esc> to switch to normal mode
 tnoremap <Esc> <C-\><C-n>
