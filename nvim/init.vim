@@ -74,18 +74,6 @@ Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'easymotion/vim-easymotion'
-" Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-
-omap t <Plug>(easymotion-bd-tl)
-
 
 " Easymotion - changing all mappings to bidirectional
 " <Leader>f{char} to move to {char}
@@ -142,9 +130,9 @@ Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
 autocmd VimEnter * RainbowParentheses
 
+let g:lt_quickfix_list_toggle_map = '<F2>'
+let g:lt_location_list_toggle_map = '<F3>'
 Plug 'Valloric/ListToggle'
-au VimEnter * nnoremap <silent> <F2> :QToggle<CR>
-au VimEnter * nnoremap <silent> <F3> :LToggle<CR>
 
 " Deoplete
 autocmd VimEnter * inoremap <silent><expr> <Tab>
@@ -198,6 +186,64 @@ vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gb :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
+
+
+" ------------------------------------------------------------------
+" Jumps
+" ------------------------------------------------------------------
+
+function! s:jump_format(line)
+  return substitute(a:line, '\S\+', '\=submatch(0)', '')
+endfunction
+
+function! s:jump_sink(lines)
+  if len(a:lines) < 2
+    return
+  endif
+  let cmd = s:action_for(a:lines[0])
+  if !empty(cmd)
+    execute 'silent' cmd
+  endif
+  let idx = index(s:jumplist, a:lines[1])
+  if idx == -1
+    return
+  endif
+  let current = match(s:jumplist, '\v^\s*\>')
+  let delta = idx - current
+  if delta < 0
+    execute 'normal! ' . -delta . "\<C-O>"
+  else
+    execute 'normal! ' . delta . "\<C-I>"
+  endif
+
+endfunction
+
+function! Fzf_jumps(...)
+  redir => cout
+  silent jumps
+  redir END
+  let s:jumplist = split(cout, '\n')
+  return fzf#run('jumps', {
+  \ 'source'  : extend(s:jumplist[0:0], map(s:jumplist[1:], 's:jump_format(v:val)')),
+  \ 'sink*'   : function('s:jump_sink'),
+  \ 'options' : '+m -x --ansi --tiebreak=index --layout=reverse-list --header-lines 1 --tiebreak=begin --prompt "Jumps> "',
+  \ }, a:000)
+endfunction
+
+command! -bar -bang Jumps call Fzf_jumps(<bang>0)
+nnoremap <silent> <leader>j :Jumps<CR>
+
+function! OpenFileUnderCursor()
+    let underCursor = expand(expand("<cfile>"))
+    if filereadable(underCursor) 
+        execute "edit " . underCursor
+    else 
+        return fzf#vim#files("", {
+               \    'options': ['-q', underCursor]
+               \})
+    endif
+endfunction
+
 nnoremap <silent> gf :call OpenFileUnderCursor()<CR>
 
 function! SearchWordWithAg()
@@ -214,17 +260,6 @@ function! SearchVisualSelectionWithAg() range
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
     execute 'Ag' selection
-endfunction
-
-function! OpenFileUnderCursor()
-    let underCursor = expand(expand("<cfile>"))
-    if filereadable(underCursor) 
-        execute "edit " . underCursor
-    else 
-        return fzf#vim#files("", {
-               \    'options': ['-q', underCursor]
-               \})
-    endif
 endfunction
 
 function! JumpToTag()
