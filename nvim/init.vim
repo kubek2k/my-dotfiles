@@ -26,6 +26,9 @@ set updatetime=500
 set splitbelow
 set splitright
 
+" Project local vimrc
+set exrc
+
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -183,6 +186,7 @@ nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>A :Windows<CR>
 nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>l :Lines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
@@ -323,12 +327,12 @@ endfunction
 execute 'nnoremap <silent> <leader>sc :so ' . s:myVimRC . '<CR>'
 nnoremap <silent> <leader>ec :call EditConfigInNewTab()<CR>
 
-source $HOME/Dotfiles/nvim/gtags.vim
-nnoremap <C-\> :Gtags 
-nnoremap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-\>d :Gtags -d <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-]> :GtagsCursor<CR>
+"source $HOME/Dotfiles/nvim/gtags.vim
+"nnoremap <C-\> :Gtags 
+"nnoremap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <C-\>d :Gtags -d <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <C-]> :GtagsCursor<CR>
 
 nnoremap <C-\><C-n> :tn<CR>
 nnoremap <C-\><C-p> :tp<CR>
