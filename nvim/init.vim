@@ -126,7 +126,6 @@ Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'LnL7/vim-nix'
 Plug 'raichoo/purescript-vim'
-Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
 autocmd VimEnter * RainbowParentheses
 
@@ -191,7 +190,6 @@ nnoremap <silent> <leader>ft :Filetypes<CR>
 " ------------------------------------------------------------------
 " Jumps
 " ------------------------------------------------------------------
-
 function! s:jump_format(line)
   return substitute(a:line, '\S\+', '\=submatch(0)', '')
 endfunction
@@ -223,11 +221,12 @@ function! Fzf_jumps(...)
   silent jumps
   redir END
   let s:jumplist = split(cout, '\n')
-  return fzf#run('jumps', {
+  return fzf#wrap(
+  'jumps', {
   \ 'source'  : extend(s:jumplist[0:0], map(s:jumplist[1:], 's:jump_format(v:val)')),
   \ 'sink*'   : function('s:jump_sink'),
   \ 'options' : '+m -x --ansi --tiebreak=index --layout=reverse-list --header-lines 1 --tiebreak=begin --prompt "Jumps> "',
-  \ }, a:000)
+  \ })
 endfunction
 
 command! -bar -bang Jumps call Fzf_jumps(<bang>0)
@@ -283,13 +282,6 @@ endfunction
 nnoremap <C-]> :call JumpToTag()<CR>
 
 let g:rainbow_active = 1
-
-let g:ale_fix_on_save = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'json': ['jq']
-\}
 
 let my_nvim_dir = fnamemodify(expand('<sfile>'), ':p:h')
 source $HOME/Dotfiles/nvim/js.vim

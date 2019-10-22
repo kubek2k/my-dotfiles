@@ -5,8 +5,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 
-let g:ale_javascript_eslint_use_global = 0
-
 function! s:filterModule(value, modules)
   return index(a:modules, a:value) == -1
 endfunction
@@ -86,9 +84,3 @@ let g:deoplete#enable_smart_case = 1
 
 au FileType javascript command! -nargs=* -complete=file VMocha :VTerm npx -p foreman nf run entr_mocha <args>
 au FileType javascript command! -nargs=* -complete=file VNode :VTerm npx -p foreman nf run entr_node <args>
-
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install prettier',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-let g:prettier#config#single_quote = 'false'
-
