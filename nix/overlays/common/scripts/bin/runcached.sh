@@ -30,7 +30,7 @@ sleep .$[ ( $RANDOM % 10 ) + 1 ]s
 count=15
 while [ -f /tmp/${cmdmd5}-runcached.pid ]; do
 	sleep 2
-	count=`expr $count -1`
+	count=`expr $count - 1`
 	if [ $count -eq 0 ]; then
 		echo "timeout waiting for runcached.pid to be removed"
 		exit -1
