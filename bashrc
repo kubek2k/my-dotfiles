@@ -24,13 +24,14 @@ elif [[ $IN_NIX_SHELL == "pure" ]]; then
     export PROMPT_COMMAND='PS1="(pure) \[${LIME_YELLOW}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] "'
 else
     ORIGINAL_PS1='\[${RED}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] '
-    export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji status`: ${ORIGINAL_PS1}"'
+    export PS1="$ORIGINAL_PS1"
+    # export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji status`: ${ORIGINAL_PS1}"'
 fi
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-        PROMPT_COMMAND="${PROMPT_COMMAND}; echo -ne \"\033]0;\`pwd\`\007\""
+        PROMPT_COMMAND="echo -ne \"\033]0;\`pwd\`\007\""
 esac
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
