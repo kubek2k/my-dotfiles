@@ -46,11 +46,6 @@ Plug 'nanotech/jellybeans.vim'
 autocmd VimEnter * set background=dark
 autocmd VimEnter * colorscheme jellybeans
 
-Plug 'neomake/neomake'
-autocmd! BufWritePost *.hs Neomake!
-autocmd! BufWritePost *.ex Neomake! mix
-let g:neomake_open_list = 0
-
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
