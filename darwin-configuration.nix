@@ -75,13 +75,13 @@ in
     pkgs.Focus
 
     pkgs.myscripts
-    ];
+  ];
 
-    environment.pathsToLink = [
-      "/share/vim-plugins"
-      "/share/emacs/site-lisp"
-      "/share/git"
-    ];
+  environment.pathsToLink = [
+    "/share/vim-plugins"
+    "/share/emacs/site-lisp"
+    "/share/git"
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
