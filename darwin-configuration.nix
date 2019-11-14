@@ -3,6 +3,10 @@
 let 
   keycodes = import ./nix/keycodes.nix;
 
+  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    inherit pkgs;
+  };
+
   overlays = self: super: rec {
     openITerm = super.writeScriptBin "openITerm" ''#!/usr/bin/osascript
       tell application "iTerm"
