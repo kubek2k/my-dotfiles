@@ -4,7 +4,7 @@ autocmd VimEnter * highlight clear SignColumn | highlight GitGutterAdd guifg=gre
 set updatetime=500
 
 " Fugitive key bindings
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gs :Gstatus<cr>:13wincmd_<cr>
 nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gl :Glog<cr>
