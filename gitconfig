@@ -17,3 +17,5 @@
     conflictStyle = diff3
 [branch]
 	autosetuprebase = always
+[rerere]
+	enabled = true
