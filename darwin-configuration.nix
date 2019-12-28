@@ -42,6 +42,7 @@ in
     pkgs.wget
     pkgs.guile
     pkgs.runcached
+    pkgs.lastpass-cli
 
     pkgs.neovim
     pkgs.global
