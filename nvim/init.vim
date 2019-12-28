@@ -21,6 +21,7 @@ set smarttab
 set expandtab 
 set mouse=a
 set updatetime=500
+set previewheight=15
 
 " More natural splits
 set splitbelow

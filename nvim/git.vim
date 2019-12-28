@@ -19,3 +19,10 @@ command! -bang Gbranch call fzf#run({
             \ 'source': 'git branch -a --no-color | grep -v "^\* " ', 
             \ 'sink': function('s:changebranch')
             \ })
+
+au BufEnter ?* call PreviewHeightWorkAround()
+func PreviewHeightWorkAround()
+    if &previewwindow
+        exec 'setlocal winheight=20'
+    endif
+endfunc
