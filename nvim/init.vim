@@ -143,9 +143,7 @@ autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 \ pumvisible() ? "\<C-p>" :
 \ deoplete#mappings#manual_complete()
 
-au VimEnter * let g:deoplete#omni_patterns = {}
-au VimEnter * let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-au VimEnter * let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 " Ack
 if executable('ag')
@@ -305,8 +303,6 @@ command! VRCScrapebook Files $HOME/.vrc/
 nnoremap <leader>vs :VRCScrapebook<cr>
 command! -nargs=1 VRCNewScrapebook e $HOME/.vrc/<args>.rest"
 call plug#end()
-
-call deoplete#initialize()
 
 " repeat last edit for each line in visual selectio mode
 xnoremap . :normal .<CR> 
