@@ -20,8 +20,8 @@ command! -bang Gbranch call fzf#run({
             \ 'sink': function('s:changebranch')
             \ })
 
-au BufEnter ?* call PreviewHeightWorkAround()
-func PreviewHeightWorkAround()
+au! BufEnter ?* call PreviewHeightWorkAround()
+func! PreviewHeightWorkAround()
     if &previewwindow
         exec 'setlocal winheight=20'
     endif
