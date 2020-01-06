@@ -76,6 +76,7 @@ in
     pkgs.Focus
 
     pkgs.myscripts
+    pkgs.yubikey-manager
   ];
 
   environment.pathsToLink = [
