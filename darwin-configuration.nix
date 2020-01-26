@@ -211,6 +211,6 @@ in
 
   fonts = {
     enableFontDir = true;
-    fonts = [ pkgs.fira-code pkgs.nerdfonts pkgs.powerline-fonts ];
+    fonts = [ pkgs.fira-code pkgs.nerdfonts pkgs.powerline-fonts pkgs.fonts.pragmatapro ];
   };
 }
