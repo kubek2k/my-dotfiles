@@ -20,7 +20,7 @@ set shiftwidth=4
 set smarttab
 set expandtab 
 set mouse=a
-set updatetime=500
+set updatetime=100
 set previewheight=15
 
 " More natural splits
