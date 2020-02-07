@@ -65,7 +65,6 @@ autocmd VimEnter * let g:disable_key_mappings = 1
 
 Plug 'wesQ3/vim-windowswap'
 
-Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' 
 
@@ -145,15 +144,6 @@ autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 200
-
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
 
 " FZF
 " Mapping selecting mappings
