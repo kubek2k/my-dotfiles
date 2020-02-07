@@ -144,6 +144,7 @@ autocmd VimEnter * inoremap <silent><expr> <S-Tab>
 \ deoplete#mappings#manual_complete()
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 200
 
 " Ack
 if executable('ag')
