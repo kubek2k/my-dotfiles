@@ -60,7 +60,7 @@ in
     pkgs.openNVim
 
     pkgs.lzma
-    pkgs.ag
+    pkgs.ripgrep
 
     pkgs.weechat
     pkgs.pwgen

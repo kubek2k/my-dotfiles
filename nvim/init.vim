@@ -1,4 +1,3 @@
-" Leader key
 let mapleader = ','
 
 " defaults
@@ -168,10 +167,10 @@ nnoremap <silent> <leader>l :Lines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :execute 'Rg ' . input('Rg/')<CR>
 
-nnoremap <silent> K :call SearchWordWithAg()<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> K :call SearchWordWithRg()<CR>
+vnoremap <silent> K :call SearchVisualSelectionWithRg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gb :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
@@ -235,11 +234,11 @@ endfunction
 
 nnoremap <silent> gf :call OpenFileUnderCursor()<CR>
 
-function! SearchWordWithAg()
-    execute 'Ag' expand('<cword>')
+function! SearchWordWithRg()
+    execute 'Rg' expand('<cword>')
 endfunction
 
-function! SearchVisualSelectionWithAg() range
+function! SearchVisualSelectionWithRg() range
     let old_reg = getreg('"')
     let old_regtype = getregtype('"')
     let old_clipboard = &clipboard
@@ -248,7 +247,7 @@ function! SearchVisualSelectionWithAg() range
     let selection = getreg('"')
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
-    execute 'Ag' selection
+    execute 'Rg' selection
 endfunction
 
 function! JumpToTag()
