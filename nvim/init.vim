@@ -238,6 +238,10 @@ function! SearchWordWithRg()
     execute 'Rg' expand('<cword>')
 endfunction
 
+function! SearchCurrentFileWithRg()
+    execute 'Rg' expand('%:t')
+endfunction
+
 function! SearchVisualSelectionWithRg() range
     let old_reg = getreg('"')
     let old_regtype = getregtype('"')
@@ -252,7 +256,7 @@ endfunction
 
 function! JumpToTag()
     let qflist = []
-    let underCursor = expand("<cexpr>")
+    let underCursor = expand("<cword>")
     let matchingTags = taglist(underCursor)
     if len(matchingTags) == 1
         call add(qflist, {
