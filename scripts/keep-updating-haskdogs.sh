@@ -7,6 +7,8 @@ else
     DIRS="$*"
 fi
 
+haskdogs --hasktags-args "-cx $DIRS"
+
 fd '.*\.(hs|lhs|hsc|cabal|project)$' | entr -c sh -c "echo \"Updating tags \$(tput setaf 2)\$(date -Iseconds)\$(tput sgr0)\$0\" && 
     if [[ \"\$0\" =~ \"cabal\" ]]; then 
         echo \"Change in cabal files detected - invoking haskdogs\"
