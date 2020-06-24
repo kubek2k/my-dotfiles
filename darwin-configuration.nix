@@ -202,6 +202,8 @@ in
     if [ -f $HOME/.bashrc ]; then
       source $HOME/.bashrc
     fi
+
+    source $(nix-store -r $(which autojump) 2>/dev/null)/etc/profile.d/autojump.sh
   '';
 
   programs.tmux.enable = true;
