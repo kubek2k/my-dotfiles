@@ -62,7 +62,6 @@ in
     pkgs.lzma
     pkgs.ripgrep
 
-    pkgs.weechat
     pkgs.pwgen
 
     pkgs.gnupg
