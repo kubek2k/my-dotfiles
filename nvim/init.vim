@@ -17,7 +17,7 @@ set smartcase
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set expandtab 
+set expandtab
 set mouse=a
 set updatetime=100
 set previewheight=15
@@ -65,7 +65,7 @@ autocmd VimEnter * let g:disable_key_mappings = 1
 Plug 'wesQ3/vim-windowswap'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim' 
+Plug 'junegunn/fzf.vim'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -223,9 +223,9 @@ nnoremap <silent> <leader>j :Jumps<CR>
 
 function! OpenFileUnderCursor()
     let underCursor = expand(expand("<cfile>"))
-    if filereadable(underCursor) 
+    if filereadable(underCursor)
         execute "edit " . underCursor
-    else 
+    else
         return fzf#vim#files("", {
                \    'options': ['-q', underCursor]
                \})
@@ -290,7 +290,7 @@ Plug 'diepm/vim-rest-console'
 autocmd VimEnter * let g:vrc_response_default_content_type = 'application/json'
 autocmd VimEnter * let g:vrc_show_command = 1
 autocmd VimEnter * let g:vrc_curl_opts = {
-  \ '-sS': '' 
+  \ '-sS': ''
   \}
 command! VRCScrapebook Files $HOME/.vrc/
 nnoremap <leader>vs :VRCScrapebook<cr>
@@ -298,7 +298,7 @@ command! -nargs=1 VRCNewScrapebook e $HOME/.vrc/<args>.rest"
 call plug#end()
 
 " repeat last edit for each line in visual selectio mode
-xnoremap . :normal .<CR> 
+xnoremap . :normal .<CR>
 
 nnoremap <leader>tt :tabe +terminal<cr>i
 nnoremap <leader>tv :VTerm<cr>
@@ -346,7 +346,7 @@ execute 'nnoremap <silent> <leader>sc :so ' . s:myVimRC . '<CR>'
 nnoremap <silent> <leader>ec :call EditConfigInNewTab()<CR>
 
 "source $HOME/Dotfiles/nvim/gtags.vim
-"nnoremap <C-\> :Gtags 
+"nnoremap <C-\> :Gtags
 "nnoremap <C-\>r :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 "nnoremap <C-\>s :Gtags -s <C-R>=expand("<cword>")<CR><CR>
 "nnoremap <C-\>d :Gtags -d <C-R>=expand("<cword>")<CR><CR>
@@ -370,3 +370,9 @@ source $HOME/Dotfiles/nvim/gtags-fzf.vim
 nnoremap <leader>s :Symbols<CR>
 nnoremap <leader>d :Definitions<CR>
 nnoremap <leader>r :References<CR>
+
+if exists("$EXTRA_VIM")
+  for path in split($EXTRA_VIM, ':')
+    exec "source ".path
+  endfor
+endif
