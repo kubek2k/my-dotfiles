@@ -223,12 +223,15 @@ nnoremap <silent> <leader>j :Jumps<CR>
 
 function! OpenFileUnderCursor()
     let underCursor = expand(expand("<cfile>"))
-    if filereadable(underCursor)
-        execute "edit " . underCursor
+    let currentDir = expand("%:p:h")
+    let currentRelativeDir = currentDir[len(getcwd()) + 1:]
+    let fileToCheck = resolve(currentRelativeDir . "/" . underCursor)
+    if filereadable(fileToCheck)
+      execute "edit " . fileToCheck
     else
-        return fzf#vim#files("", {
-               \    'options': ['-q', underCursor]
-               \})
+      return fzf#vim#files ("", {
+            \ 'options': ['-q', fileToCheck]
+            \})
     endif
 endfunction
 
