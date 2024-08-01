@@ -16,7 +16,12 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [ "jakub.janczak"];
+    };
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -45,6 +50,7 @@
        pkgs.ripgrep
        pkgs.bat
        pkgs.tmux
+       pkgs.pwgen
 
        pkgs.git
        pkgs.gh
