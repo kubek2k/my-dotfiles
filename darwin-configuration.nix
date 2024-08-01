@@ -95,14 +95,14 @@
 
     programs.tmux = import ./nix/tmux.nix;
 
-    ## alternative bitwarden client
-    #programs.rbw = {
-      #enable = true;
-      #settings = {
-        #email = "kubek2k@gmail.com";
-        #pinentry = "curses";
-      #};
-    #};
+    # alternative bitwarden client
+    programs.rbw = {
+      enable = true;
+      settings = {
+        email = "kubek2k@gmail.com";
+        pinentry = pkgs.pinentry-tty;
+      };
+    };
 
     home.stateVersion = "23.11";
   };
