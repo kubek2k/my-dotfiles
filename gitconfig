@@ -17,5 +17,8 @@
     conflictStyle = diff3
 [branch]
 	autosetuprebase = always
+	autosetupmerge = always
 [rerere]
 	enabled = true
+[pull]
+	ff = only

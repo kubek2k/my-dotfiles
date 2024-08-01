@@ -4,19 +4,19 @@ autocmd VimEnter * highlight clear SignColumn | highlight GitGutterAdd guifg=gre
 set updatetime=500
 
 " Fugitive key bindings
-nnoremap <leader>gs :13Gstatus<cr>
+nnoremap <leader>gs :Gstatus<cr>:res 13<cr>:set winfixheight<cr><c-n>
 nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 
-function! s:changebranch(branch) 
+function! s:changebranch(branch)
     execute 'Git checkout' . a:branch
     call feedkeys("i")
 endfunction
 
 command! -bang Gbranch call fzf#run({
-            \ 'source': 'git branch -a --no-color | grep -v "^\* " ', 
+            \ 'source': 'git branch -a --no-color | grep -v "^\* " ',
             \ 'sink': function('s:changebranch')
             \ })
 

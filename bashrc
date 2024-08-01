@@ -18,7 +18,7 @@ UNDERLINE=$(tput smul)
 
 # prompt definition
 #export PS1='\! ${WHITE}(${YELLOW}\u@\h${WHITE}) ${RED}\w${MAGENTA}${GREEN} \$${NORMAL} '
-if [[ $IN_NIX_SHELL == "impure" ]]; then 
+if [[ $IN_NIX_SHELL == "impure" ]]; then
     export PROMPT_COMMAND='PS1="(impure) \[${YELLOW}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] "'
 elif [[ $IN_NIX_SHELL == "pure" ]]; then
     export PROMPT_COMMAND='PS1="(pure) \[${LIME_YELLOW}\]\w\[${MAGENTA}\] $(__git_ps1 "(%s)") \[${GREEN}\]\$\[${NORMAL}\] "'
@@ -27,12 +27,6 @@ else
     export PS1="$ORIGINAL_PS1"
     # export PROMPT_COMMAND='PS1="\n`soji header`\n\[${NORMAL}\]\[${CYAN}\]`soji status`: ${ORIGINAL_PS1}"'
 fi
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PROMPT_COMMAND="echo -ne \"\033]0;\`pwd\`\007\""
-esac
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
 

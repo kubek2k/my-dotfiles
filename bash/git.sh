@@ -3,6 +3,14 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 # show dirty state as * and added files as +
 export GIT_PS1_SHOWDIRTYSTATE=1
 
+if [ -f /run/current-system/sw/share/git/contrib/completion/git-prompt.sh ]; then
+    source /run/current-system/sw/share/git/contrib/completion/git-prompt.sh
+fi
+
+if [ -f /run/current-system/sw/share/git/contrib/completion/git-completion.bash.sh ]; then
+    source /run/current-system/sw/share/git/contrib/completion/git-completion.bash
+fi
+
 # one command pull-request
 function ocpr {
    if [ "$1" == "" ]; then

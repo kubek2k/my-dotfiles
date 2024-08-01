@@ -15,5 +15,5 @@ pkgs: with pkgs; stdenv.mkDerivation {
       mkdir -p $out/bin
       cp runcached $out/bin
     '';
-    patches = [] ++ stdenv.lib.optional stdenv.isDarwin ./mtime-darwin.patch;
+    patches = [] ++ pkgs.lib.lists.optional stdenv.isDarwin ./mtime-darwin.patch;
   } 

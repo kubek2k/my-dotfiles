@@ -1,7 +1,6 @@
 self: super: {
   installMacApplicationFromZip = { name, appname ? name, version, src, description, homepage, 
-  postInstall ? "", sourceRoot ? ".", ... }:
-  with super; stdenv.mkDerivation {
+  postInstall ? "", sourceRoot ? ".", ... }: with super; stdenv.mkDerivation {
     name = "${name}-${version}";
     version = "${version}";
     src = src;
@@ -12,7 +11,7 @@ self: super: {
           mkdir -p "$out/Applications/${appname}.app"
           cp -pR * "$out/Applications/${appname}.app"
     '' + postInstall;
-    meta = with stdenv.lib; {
+    meta = with lib; {
       description = description;
       homepage = homepage;
       maintainers = with maintainers; [ jwiegley ];
@@ -21,7 +20,5 @@ self: super: {
   }; 
   Docker = import ./docker self;
   Dash = import ./dash self;
-  iTerm2 = import ./iterm2 self;
   Focus = import ./focus self;
-  chunkwm = import ./chunkwm self;
 }

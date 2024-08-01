@@ -1,137 +1,109 @@
 { config, pkgs, ... }:
 
-let 
-  keycodes = import ./nix/keycodes.nix;
-
-  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-    inherit pkgs;
-  };
-
-  overlays = self: super: rec {
-    openITerm = super.writeScriptBin "openITerm" ''#!/usr/bin/osascript
-      tell application "iTerm"
-        create window with default profile
-      end tell 
-      '';
-
-    openNVim = super.writeScriptBin "openNvim" ''#!/usr/bin/osascript
-      tell application "iTerm"
-        create window with default profile command "/run/current-system/sw/bin/nvim"
-      end tell 
-      '';
-  };
-in
-  {
+{
+  imports = [ <home-manager/nix-darwin> ];
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ 
-    pkgs.fzf
-    pkgs.fd
-    pkgs.entr
-    pkgs.jq
-    pkgs.autojump
-    pkgs.bashInteractive
-    pkgs.coreutils
-    pkgs.gawk
-    pkgs.bat
-    pkgs.findutils
-    pkgs.direnv
+  environment.systemPackages = [];
 
-    pkgs.curl
-    pkgs.wget
-    pkgs.guile
-    pkgs.runcached
-    pkgs.lastpass-cli
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; }) ];
 
-    pkgs.neovim
-    pkgs.global
-    pkgs.ctags
-    pkgs.highlight
-
-    pkgs.gitAndTools.gitFull
-    pkgs.gist
-    pkgs.gitAndTools.hub
-
-    pkgs.awscli
-    pkgs.travis
-
-    pkgs.openITerm
-    pkgs.openNVim
-
-    pkgs.lzma
-    pkgs.ripgrep
-
-    pkgs.pwgen
-
-    pkgs.gnupg
-    pkgs.dhall
-    pkgs.gcalcli
-    pkgs.todoist
-
-    pkgs.iTerm2
-    pkgs.Dash
-    pkgs.Docker
-    pkgs.Focus
-
-    pkgs.myscripts
-    pkgs.yubikey-manager
-  ];
-
-  environment.pathsToLink = [
-    "/share/vim-plugins"
-    "/share/emacs/site-lisp"
-    "/share/git"
+  environment.shells = [ 
+    pkgs.bashInteractive 
+    pkgs.zsh 
   ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 3;
+  system.stateVersion = 4;
 
-  # You should generally set this to the total number of logical cores in your system.
-  # $ sysctl -n hw.ncpu
-  nix.maxJobs = 4;
-  nix.buildCores = 8;
-  nix.nixPath = [ 
-    "darwin=$HOME/.nix-defexpr/channels/darwin"
-    "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs"
-    "darwin-config=$HOME/.nixpkgs/darwin-configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-    "nixpkgs-overlays=$HOME/Dotfiles/nix/overlays"
-  ];
- 
-  nixpkgs.overlays = [ 
-    overlays
-    (import ./nix/overlays/mac)
-    (import ./nix/overlays/common)
-  ];
+  users.users."jakub.janczak" = {
+    name = "jakub.janczak";
+    home = "/Users/jakub.janczak";
+  };
 
-  environment.shellAliases = import ./nix/aliases.nix;
-  environment.variables = import ./nix/variables.nix;
-  environment.loginShell = "/run/current-system/sw/bin/bash";
+  environment.launchDaemons = {
+    "limit.maxfiles.plist" = {
+      enable = true;
+      source = ./nix/launchd/limit.maxfiles.plist;
+    };
+  };
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.bash.enable = true;
-  programs.bash.enableCompletion = true;
-  programs.bash.interactiveShellInit = ''
-    if [ -f $HOME/.bashrc ]; then
-      source $HOME/.bashrc
-    fi
+  home-manager.verbose = true;
+  home-manager.users."jakub.janczak" = { pkgs, ... }: {
+    home.packages = [ 
+       pkgs.atool 
+       pkgs.httpie 
+       pkgs.jq
+       pkgs.fd
+       pkgs.fzf
+       pkgs.ripgrep
+       pkgs.bat
+       pkgs.tmux
 
-    source $(nix-store -r $(which autojump) 2>/dev/null)/etc/profile.d/autojump.sh
-  '';
+       pkgs.git
+       pkgs.gh
 
-  programs.tmux.enable = true;
-  programs.tmux.enableSensible = true;
-  programs.tmux.enableFzf = true;
-  programs.tmux.enableVim = true;
+       pkgs.eza
 
-  fonts = {
-    enableFontDir = true;
-    fonts = [ pkgs.fira-code pkgs.powerline-fonts pkgs.fonts.pragmatapro-nerd-fonts pkgs.fonts.jetbrains-mono-nerd-fonts ];
+      # iterm2
+      # TODO - add darwin condition here
+      pkgs.iterm2
+    ];
+
+    programs.bash = import ./nix/bash.nix;
+
+    programs.powerline-go = {
+      enable = true;
+      modules = [ 
+        "time"
+        "ssh" 
+        "direnv" 
+        "docker" 
+        "exit" 
+        "cwd"
+        "git" 
+        "kube" 
+        "nix-shell"
+      ];
+      settings = {
+        theme = "gruvbox";
+        colorize-hostname = true;
+      };
+    };
+
+    programs.git = import ./nix/git.nix;
+
+    programs.autojump = {
+     enable = true;
+     enableBashIntegration = true;
+     enableZshIntegration = true;
+    };
+
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.neovim = (import ./nix/neovim.nix) pkgs;
+
+    programs.tmux = import ./nix/tmux.nix;
+
+    ## alternative bitwarden client
+    #programs.rbw = {
+      #enable = true;
+      #settings = {
+        #email = "kubek2k@gmail.com";
+        #pinentry = "curses";
+      #};
+    #};
+
+    home.stateVersion = "23.11";
   };
 }

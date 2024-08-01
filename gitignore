@@ -5,6 +5,6 @@ GRTAGS
 GTAGS
 .ocpr-reviewers
 .env*
-.nvimrc
+.vimrc
 tags
 .direnv

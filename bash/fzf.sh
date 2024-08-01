@@ -2,13 +2,13 @@
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$(fzf-share)/completion.bash" 2> /dev/null
+# [[ $- == *i* ]] && source "$(fzf-share)/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
 source "$(fzf-share)/key-bindings.bash"
 
-export export FZF_DEFAULT_COMMAND='fd --type f .'
+export FZF_DEFAULT_COMMAND='fd --type f . -H --ignore'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 100% --preview '(bat --color always --style changes --paging never --theme 1337 {} || cat {}) 2> /dev/null'"
 
@@ -55,13 +55,22 @@ fj() {
 }
 alias fag="ag --nobreak --nonumbers --noheading . | fzf"
 
-# change branch 
+# change branch
 fbr() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# change branch
+frbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/remotes/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+           git checkout --track $(echo "$branch" | sed "s/.* //") -B $(echo "$branch" | sed "s/^[^/]*\///")
 }
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
@@ -117,7 +126,7 @@ fopenissue() {
   issue_number=`fchooseissue | cut -f1 -d' '`
   local session_name
   session_name="issue-${issue_number}"
-  tmux new -s "${session_name}" "hub issue show ${issue_number} | mdless" 
+  tmux new -s "${session_name}" "hub issue show ${issue_number} | mdless"
 }
 
 fissueurl() {

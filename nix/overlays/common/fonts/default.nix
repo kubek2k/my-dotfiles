@@ -23,7 +23,7 @@ pkgs:
           mkdir -p $install_path
           find -name "*.ttf" -exec cp {} $install_path \;
         '';
-        meta = with pkgs.stdenv.lib; {
+        meta = with pkgs.lib; {
           homepage = "https://www.fsd.it/shop/fonts/pragmatapro/";
           description = ''
             PragmataPro™ is a condensed monospaced font optimized for screen,
@@ -53,7 +53,7 @@ pkgs:
           mkdir -p $install_path
           find -name "*.ttf" -exec cp {} $install_path \;
         '';
-        meta = with pkgs.stdenv.lib; {
+        meta = with pkgs.lib; {
           homepage = "https://www.jetbrains.com/lp/mono/";
           description = ''
             JetBrains Mono font face
