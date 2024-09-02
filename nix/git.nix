@@ -10,6 +10,9 @@
   };
   userEmail = "jakub.janczak@scrive.com";
   userName = "Jakub Janczak";
+  difftastic = {
+    enable = true;
+  };
   extraConfig = {
     pull.ff = "only";
     rerere.enabled = true;

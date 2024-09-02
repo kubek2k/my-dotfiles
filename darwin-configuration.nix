@@ -53,6 +53,7 @@
        pkgs.pwgen
 
        pkgs.git
+       pkgs.difftastic
        pkgs.gh
 
        pkgs.eza
